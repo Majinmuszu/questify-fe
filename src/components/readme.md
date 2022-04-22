@@ -1,0 +1,1 @@
+Dla kazdego komponentu powstaje folder z jego nazwą np. Header a w nim Header.jsx 
