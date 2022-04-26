@@ -1,0 +1,78 @@
+.title {
+  color: #00d7ff;
+  font-family: "HelveticaNeueCyr-bold";
+  font-size: 24px;
+  padding-bottom: 70px;
+  padding-top: 60px;
+  font-weight: 700;
+  font-style: bold;
+}
+
+.about {
+  font-family: "HelveticaNeueCyr-bold";
+  font-size: 18px;
+  padding-bottom: 30px;
+  font-weight: 700;
+  font-style: bold;
+  width: 280px;
+  height: 85px;
+}
+
+.form__desc {
+  color: #b9c3c8;
+  font-family: "HelveticaNeueCyr-light";
+  font-size: 14px;
+  font-weight: 400;
+  font-style: normal;
+  padding-bottom: 30px;
+}
+
+.spacer {
+  padding-bottom: 30px;
+  line-height: 45px;
+}
+
+.spacer__email {
+  line-height: 18px;
+  padding-bottom: 20px;
+}
+
+.spacer__password {
+  line-height: 18px;
+  padding-bottom: 25px;
+}
+
+.input {
+  color: #00d7ff;
+  border: none;
+  border-bottom: 1px solid #00d7ff;
+  width: 100%;
+}
+.input::placeholder {
+  color: #00d7ff;
+}
+
+@media screen and (min-width: 530px) {
+  .title {
+    font-size: 20px;
+  }
+  .about {
+    width: 375px;
+    height: 100px;
+    font-size: 24px;
+  }
+  .form-desc {
+    font-size: 18px;
+  }
+  .input {
+    width: auto;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .about {
+    font-size: 34px;
+    width: 560px;
+    height: 135px;
+  }
+}
