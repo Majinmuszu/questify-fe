@@ -1,3 +1,20 @@
+@font-face {
+  font-family: 'HelveticaNeueCyr-bold';
+  src: local('HelveticaNeueCyr-bold'), url(./fonts/HelveticaNeueCyr-Bold.otf) format('truetype');
+}
+@font-face {
+  font-family: 'HelveticaNeueCyr-medium';
+  src: local('HelveticaNeueCyr-medium'), url(./fonts/HelveticaNeueCyr-Medium.otf) format('truetype');
+}
+@font-face {
+  font-family: 'HelveticaNeueCyr-light';
+  src: local('HelveticaNeueCyr-light'), url(./fonts/HelveticaNeueCyr-Light.otf) format('truetype');
+}
+* {
+  margin:0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

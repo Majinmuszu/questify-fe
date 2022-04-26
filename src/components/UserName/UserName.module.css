@@ -1,0 +1,45 @@
+.userLetter {
+  font-family: "HelveticaNeueCyr-bold";
+  font-style: normal;
+  font-weight: 900;
+  font-size: 17px;
+  line-height: 16px;
+  letter-spacing: 0.02em;
+  color: #ffffff;
+  display: inline-block;
+  margin-top: 30%;
+  margin-left: 30%;
+}
+.userName {
+  display: none;
+}
+.letterCircle {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #3e4e6c;
+  font-size: 17px;
+}
+.userWrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+@media screen and (min-width: 530px) {
+  .userWrapper {
+    justify-content: center;
+  }
+  .userName {
+    display: inline-block;
+    font-family: "HelveticaNeueCyr-light";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 1;
+    letter-spacing: 0.02em;
+    color: #7b8aa4;
+    margin-left: 10px;
+  }
+}
