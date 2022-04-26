@@ -1,3 +1,5 @@
+import { useSelector } from "react-redux";
+import Header from "./components/Header/Header";
 import Tasks from "./components/Tasks/Tasks";
 
 const cardsToday = [
@@ -80,12 +82,16 @@ const cardsObj = [
 ];
 
 function App() {
+  const user = useSelector((state) => state.currentUser);
   return (
-    <div>
-      <Tasks title="Today" cardsData={cardsTommorow} />
-      <Tasks title="Tommorow" cardsData={cardsObj} />
-      <Tasks title="Done" cardsData={cardsToday} />
-    </div>
+    <>
+      {user ? <Header /> : <></>}
+      <div>
+        <Tasks title="Today" cardsData={cardsTommorow} />
+        <Tasks title="Tommorow" cardsData={cardsObj} />
+        <Tasks title="Done" cardsData={cardsToday} />
+      </div>
+    </>
   );
 }
 

@@ -1,8 +1,11 @@
 import { createReducer } from "@reduxjs/toolkit";
-import { tokenAction } from "./actions";
+import { currentUserAction, tokenAction } from "./actions";
 
-const tokenReducer = createReducer("", {
+const tokenReducer = createReducer(null, {
   [tokenAction]: (state, { payload }) => payload,
 });
+const userReducer = createReducer("", {
+  [currentUserAction]: (state, { payload }) => payload,
+});
 
-export { tokenReducer };
+export { tokenReducer, userReducer };
