@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import Header from "./components/Header/Header";
 import Tasks from "./components/Tasks/Tasks";
+import Landing from "./components/Landing/Landing";
 
 const cardsToday = [
   {
@@ -86,6 +87,7 @@ function App() {
   return (
     <>
       {user ? <Header /> : <></>}
+      <Landing />
       <div>
         <Tasks title="Today" cardsData={cardsTommorow} />
         <Tasks title="Tommorow" cardsData={cardsObj} />
