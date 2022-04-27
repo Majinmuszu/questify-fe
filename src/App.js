@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
+import Landing from "./pages/Landing/Landing";
 import Header from "./components/Header/Header";
 import Tasks from "./components/Tasks/Tasks";
-import Landing from "./components/Landing/Landing";
 
 const cardsToday = [
   {
