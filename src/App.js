@@ -3,7 +3,6 @@ import { Route, Routes } from "react-router";
 import Landing from "./pages/Landing/Landing";
 import HomePage from "./pages/HomePage/HomePage";
 import Header from "./components/Header/Header";
-import Tasks from "./components/Tasks/Tasks";
 
 const App = () => {
   // const user = useSelector((state) => state.currentUser);

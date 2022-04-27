@@ -1,6 +1,6 @@
 .landing {
   width: 100%;
-  height: 650px;
+  height: 100vh;
   background: url(/images/Landing/Mobile/landingMB.png) no-repeat 0% 100%,
     url(/images/Landing/Mobile/landingMG.png) no-repeat 0% 100%;
 }
@@ -63,7 +63,7 @@
 
 @media screen and (min-width: 530px) {
   .landing {
-    height: 1020px;
+    height: 100vh;
     background: url(/images/Landing/Tablet/landingT1.png) no-repeat 100% 0%,
       url(/images/Landing/Tablet/landingT2.png) no-repeat 100% 100%;
   }
@@ -88,7 +88,7 @@
 
 @media screen and (min-width: 1024px) {
   .landing {
-    height: 850px;
+    height: 100vh;
     background: url(/images/Landing/Desktop/landingD1.png) no-repeat 100% 0%,
       url(/images/Landing/Desktop/landingD2.png) no-repeat 100% 100%;
   }
