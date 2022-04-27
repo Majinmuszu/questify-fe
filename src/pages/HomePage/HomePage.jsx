@@ -1,6 +1,4 @@
 import React from "react";
-import Header from "../../components/Header/Header";
-// import Card from "../../components/Card/Card";
 import Tasks from "../../components/Tasks/Tasks";
 import s from "./HomePage.module.css";
 
