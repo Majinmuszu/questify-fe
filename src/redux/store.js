@@ -2,10 +2,10 @@ import { configureStore } from "@reduxjs/toolkit";
 import { questifyApi } from "../services/api";
 import { tokenReducer, userReducer } from "./reducers";
 
-const preloadedState = {
-  authToken: null,
-  currentUser: { email: "test@mail.com" },
-};
+// const preloadedState = {
+//   authToken: null,
+//   // currentUser: { email: "test@mail.com" },
+// };
 export const store = configureStore({
   reducer: {
     [questifyApi.reducerPath]: questifyApi.reducer,
@@ -13,6 +13,5 @@ export const store = configureStore({
     currentUser: userReducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(questifyApi.middleware),
-  preloadedState,
+    getDefaultMiddleware().concat(questifyApi.middleware)
 });

@@ -2,8 +2,63 @@ import React from "react";
 import Button from "../../components/Button/Button";
 import s from "./Landing.module.css";
 import sc from "../../utils/Container.module.css";
+import {
+  useGetUsersQuery,
+  useLoginUserMutation,
+  useRegisterUserMutation,
+} from "../../services/api";
+import { useDispatch } from "react-redux";
+import { currentUserAction, tokenAction } from "../../redux/actions";
+import { useNavigate } from "react-router";
+import { saveTokenToSS } from "../../services/sessionStorage";
+import { Notify } from "notiflix/build/notiflix-notify-aio";
+import { Loading } from "notiflix/build/notiflix-loading-aio";
+
+// TODO zlikwidować dziwny błąd - przy pierwszym loginie (lub po odswiezeniu i loginie)
+// wywala warning w konsoli.
 
 const Landing = () => {
+  const { data, error, isLoading } = useGetUsersQuery();
+  const [loginUser, loginStatus] = useLoginUserMutation();
+  const [registerUser, registerStatus] = useRegisterUserMutation();
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  
+  const submitEvent = (e) => {
+    e.preventDefault();
+    const formEmail = e.target.email.value;
+    const formPass = e.target.password.value;
+    if (!isLoading && !error) {
+      const users = data.data.users;
+      if (users.find(({ email }) => email === formEmail)) {
+        loginUser({ email: formEmail, password: formPass }).then(
+          Loading.arrows("Logging In")
+        );
+      } else {
+        registerUser({ email: formEmail, password: formPass })
+          .then(
+            setTimeout(() => {
+              loginUser({ email: formEmail, password: formPass });
+            }, 500)
+          )
+          .then(Loading.arrows("Registering and Logging in"));
+      }
+    } else {
+      Notify.failure("An error occured, try again in a while");
+    }
+  };
+
+  // If login succesfull this function runs
+  if (loginStatus.data) {
+    const { token, user } = loginStatus.data.data;
+    dispatch(tokenAction(token));
+    saveTokenToSS(token);
+    dispatch(currentUserAction(user.email));
+    setTimeout(() => {
+      navigate("/home");
+    }, 700);
+  }
   return (
     <div className={s.landing}>
       <div className={s.position}>
@@ -14,7 +69,7 @@ const Landing = () => {
             amazing <br />
             quests and exciting challenges.
           </p>
-          <form method="post">
+          <form onSubmit={submitEvent}>
             <div className={s.spacer}>
               <h2 className={s.form__desc}>
                 Write your email to sign up or log in
@@ -27,15 +82,17 @@ const Landing = () => {
                 name="email"
                 className={s.input}
                 placeholder="Email"
+                defaultValue="zbyszek@mail.com"
               ></input>
             </div>
             <div className={s.spacer__password}>
               <label htmlFor="password" className={s} required></label>
               <input
-                type="text"
+                type="password"
                 name="password"
                 className={s.input}
                 placeholder="Password"
+                defaultValue="password2"
               ></input>
               <Button />
             </div>

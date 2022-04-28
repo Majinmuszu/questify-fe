@@ -3,8 +3,8 @@ import s from "./Button.module.css";
 
 const Button = () => {
   return (
-    <div>
-      <button type="button" className={s.button}></button>
+    <div className={s.buttonWrapper}>
+      <button type="submit" className={s.button}>go!</button>
     </div>
   );
 };
