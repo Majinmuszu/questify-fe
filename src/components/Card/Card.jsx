@@ -31,7 +31,6 @@ const Card = ({ cardsData }) => {
                   src={starIcon}
                   alt="star"
                   tabIndex="1"></img>
-                {/* <p>false</p> */}
               </div>
               <div className={s.TitleWrapper}>
                 <h2 className={s.CardTitle}>{title}</h2>
