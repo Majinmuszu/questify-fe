@@ -21,7 +21,7 @@ const Landing = () => {
               </h2>
             </div>
             <div className={s.spacer__email}>
-              <label for="email" className={s} required></label>
+              <label htmlFor="email" className={s} required></label>
               <input
                 type="text"
                 name="email"
@@ -30,7 +30,7 @@ const Landing = () => {
               ></input>
             </div>
             <div className={s.spacer__password}>
-              <label for="password" className={s} required></label>
+              <label htmlFor="password" className={s} required></label>
               <input
                 type="text"
                 name="password"
