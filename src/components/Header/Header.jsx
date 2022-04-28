@@ -5,22 +5,26 @@ import UserName from "../UserName/UserName";
 import { useLazyLogoutUserQuery } from "../../services/api";
 import { useDispatch, useSelector } from "react-redux";
 import { currentUserAction } from "../../redux/actions";
+import { useNavigate } from "react-router";
+import { tokenAction } from "../../redux/actions";
+import { saveTokenToSS } from "../../services/sessionStorage";
 const Header = () => {
-  const user = useSelector((state) => state.currentUser);
   const [logoutTrigger] = useLazyLogoutUserQuery();
   const dispatch = useDispatch();
-  const logout = () => {
-    dispatch(currentUserAction(null));
+  const navigate = useNavigate();
+  const logout = (e) => {
+    e.preventDefault();
     logoutTrigger();
-    console.log(user);
+    saveTokenToSS(null);
+    dispatch(currentUserAction(null));
+    dispatch(tokenAction(null));
+    navigate("/");
   };
-  console.log(user);
   return (
-    // TODO Add react-router logic when logout
     <header className={s.header}>
       <h2 className={s.logo}>Questify</h2>
       <UserName />
-      <button className={s.logoutButton} onClick={() => logout()}>
+      <button className={s.logoutButton} onClick={logout}>
         <img
           className={s.logout}
           src={logoutIcon}
