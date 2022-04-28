@@ -35,7 +35,7 @@ const cardsTommorow = [
   {
     id: 1,
     title: "test title",
-    difficulty: "medium",
+    difficulty: "normal",
     category: "learning",
     date: "2029-12-31",
     time: "20:30",
@@ -73,7 +73,7 @@ const cardsObj = [
   {
     id: 2,
     title: "test title",
-    difficulty: "medium",
+    difficulty: "normal",
     category: "learning",
     date: "2029-12-31",
     time: "20:30",

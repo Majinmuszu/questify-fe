@@ -28,7 +28,15 @@
   align-items: center;
 }
 
+.levelWrapper {
+  display: flex;
+  align-items: baseline;
+}
+
 .level {
+  display: flex;
+  align-items: baseline;
+  margin-left: 4px;
   font-family: "HelveticaNeueCyr-Light";
   font-size: 14px;
   line-height: 14px;
