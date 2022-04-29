@@ -21,7 +21,7 @@ import { Report } from "notiflix/build/notiflix-report-aio";
 const Landing = () => {
   const { data, error, isLoading } = useGetUsersQuery();
   const [loginUser, loginStatus] = useLoginUserMutation();
-  const [registerUser, registerStatus] = useRegisterUserMutation();
+  const [registerUser] = useRegisterUserMutation();
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
