@@ -13,6 +13,7 @@ import { useNavigate } from "react-router";
 import { saveTokenToSS } from "../../services/sessionStorage";
 import { Notify } from "notiflix/build/notiflix-notify-aio";
 import { Loading } from "notiflix/build/notiflix-loading-aio";
+import { Report } from "notiflix/build/notiflix-report-aio";
 
 // TODO zlikwidować dziwny błąd - przy pierwszym loginie (lub po odswiezeniu i loginie)
 // wywala warning w konsoli.
@@ -49,6 +50,14 @@ const Landing = () => {
     }
   };
 
+  if (loginStatus.error) {
+    Loading.remove();
+    Report.failure(
+      "Login failure",
+      `Error message: ${loginStatus.error.data.message}`,
+      "Okay"
+    );
+  }
   // If login succesfull this function runs
   if (loginStatus.data) {
     const { token, user } = loginStatus.data.data;
@@ -92,6 +101,7 @@ const Landing = () => {
                 name="password"
                 className={s.input}
                 placeholder="Password"
+                minLength="6"
                 defaultValue="password2"
               ></input>
               <ButtonGo />
