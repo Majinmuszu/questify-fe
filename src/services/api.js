@@ -7,7 +7,6 @@ const questifyApi = createApi({
     prepareHeaders: (headers, { getState }) => {
       const token = getState().authToken;
       if (token) {
-        console.log(token);
         headers.set("authorization", `Bearer ${token}`);
       }
       return headers;

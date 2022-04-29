@@ -7,4 +7,25 @@
   border-color: #ff851c;
   border-style: none;
   box-shadow: 0px 0px 4px 2px #ff851c;
+  font-family: "HelveticaNeueCyr-bold";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 1;
+  text-align: center;
+  letter-spacing: 0.02em;
+  color: #ffffff;
+  cursor: pointer;
+}
+.buttonWrapper {
+  padding-top: 25px;
+  display: flex;
+  justify-content: center;
+}
+
+@media screen and (min-width: 530px) {
+  .buttonWrapper {
+    justify-content: flex-start;
+    padding-left: 121px;
+  }
 }

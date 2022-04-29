@@ -31,6 +31,7 @@
   border-radius: 50%;
   border: 2px #242a37 solid;
   transition: all 500ms;
+  cursor: pointer;
 }
 .logoutButton:hover {
   transition: all 800ms;
