@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "../../components/Button/Button";
+import ButtonGo from "../../components/Buttons/ButtonGo";
 import s from "./Landing.module.css";
 import sc from "../../utils/Container.module.css";
 import {
@@ -24,7 +24,7 @@ const Landing = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  
+
   const submitEvent = (e) => {
     e.preventDefault();
     const formEmail = e.target.email.value;
@@ -94,7 +94,7 @@ const Landing = () => {
                 placeholder="Password"
                 defaultValue="password2"
               ></input>
-              <Button />
+              <ButtonGo />
             </div>
           </form>
         </div>
