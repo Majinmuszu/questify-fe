@@ -48,7 +48,7 @@ const questifyApi = createApi({
     }),
 
     getCurrentUser: builder.query({
-      query: () => `users/logout`,
+      query: () => `users/current`,
       providesTags: ["Users", "Cards"],
     }),
 

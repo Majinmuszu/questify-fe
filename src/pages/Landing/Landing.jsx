@@ -10,6 +10,7 @@ import {
 import { useDispatch } from "react-redux";
 import { currentUserAction, tokenAction } from "../../redux/actions";
 import { useNavigate } from "react-router";
+import { useEffect } from "react";
 import { saveTokenToSS } from "../../services/sessionStorage";
 import { Notify } from "notiflix/build/notiflix-notify-aio";
 import { Loading } from "notiflix/build/notiflix-loading-aio";
@@ -24,7 +25,7 @@ const Landing = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  
+
   const submitEvent = (e) => {
     e.preventDefault();
     const formEmail = e.target.email.value;
@@ -50,15 +51,19 @@ const Landing = () => {
   };
 
   // If login succesfull this function runs
-  if (loginStatus.data) {
-    const { token, user } = loginStatus.data.data;
-    dispatch(tokenAction(token));
-    saveTokenToSS(token);
-    dispatch(currentUserAction(user.email));
-    setTimeout(() => {
-      navigate("/home");
-    }, 700);
-  }
+
+  useEffect(() => {
+    if (loginStatus.data) {
+      const { token, user } = loginStatus.data.data;
+      dispatch(tokenAction(token));
+      saveTokenToSS(token);
+      dispatch(currentUserAction(user.email));
+      setTimeout(() => {
+        navigate("/home");
+      }, 700);
+    }
+  });
+
   return (
     <div className={s.landing}>
       <div className={s.position}>
@@ -82,8 +87,7 @@ const Landing = () => {
                 name="email"
                 className={s.input}
                 placeholder="Email"
-                defaultValue="zbyszek@mail.com"
-              ></input>
+                defaultValue="zbyszek@mail.com"></input>
             </div>
             <div className={s.spacer__password}>
               <label htmlFor="password" className={s} required></label>
@@ -92,8 +96,7 @@ const Landing = () => {
                 name="password"
                 className={s.input}
                 placeholder="Password"
-                defaultValue="password2"
-              ></input>
+                defaultValue="password2"></input>
               <Button />
             </div>
           </form>
