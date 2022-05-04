@@ -20,5 +20,5 @@
 .buttonWrapper {
   padding-top: 25px;
   display: flex;
-  justify-content: center;
+  justify-content: right;
 }

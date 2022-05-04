@@ -1,6 +1,8 @@
 import React from "react";
 import Tasks from "../../components/Tasks/Tasks";
+import ButtonPlus from "../../components/ButtonPlus/ButtonPlus";
 import s from "./HomePage.module.css";
+// import CardForm from "../../components/CardForm/CardForm";
 
 const cardsToday = [
   {
@@ -93,9 +95,11 @@ const cardsObj = [
 const Main = () => {
   return (
     <div className={s.Container}>
+      {/* <CardForm /> */}
       <Tasks title="Today" cardsData={cardsToday} />
       <Tasks title="Tommorow" cardsData={cardsTommorow} />
       <Tasks title="Done" cardsData={cardsObj} />
+      <ButtonPlus />
     </div>
   );
 };
