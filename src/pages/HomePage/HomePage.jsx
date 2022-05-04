@@ -34,7 +34,7 @@ const cardsTommorow = [
 ];
 
 const Main = () => {
-  const { data, error, isLoading } = useGetCardsQuery();
+  const { data } = useGetCardsQuery();
 
   return (
     <div className={s.Container}>
