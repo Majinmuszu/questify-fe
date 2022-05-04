@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "../../components/Button/Button";
+import ButtonGo from "../../components/Buttons/ButtonGo";
 import s from "./Landing.module.css";
 import sc from "../../utils/Container.module.css";
 import {
@@ -14,6 +14,7 @@ import { useEffect } from "react";
 import { saveTokenToSS } from "../../services/sessionStorage";
 import { Notify } from "notiflix/build/notiflix-notify-aio";
 import { Loading } from "notiflix/build/notiflix-loading-aio";
+import { Report } from "notiflix/build/notiflix-report-aio";
 
 // TODO zlikwidować dziwny błąd - przy pierwszym loginie (lub po odswiezeniu i loginie)
 // wywala warning w konsoli.
@@ -21,7 +22,7 @@ import { Loading } from "notiflix/build/notiflix-loading-aio";
 const Landing = () => {
   const { data, error, isLoading } = useGetUsersQuery();
   const [loginUser, loginStatus] = useLoginUserMutation();
-  const [registerUser, registerStatus] = useRegisterUserMutation();
+  const [registerUser] = useRegisterUserMutation();
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -50,6 +51,14 @@ const Landing = () => {
     }
   };
 
+  if (loginStatus.error) {
+    Loading.remove();
+    Report.failure(
+      "Login failure",
+      `Error message: ${loginStatus.error.data.message}`,
+      "Okay"
+    );
+  }
   // If login succesfull this function runs
 
   useEffect(() => {
@@ -96,8 +105,11 @@ const Landing = () => {
                 name="password"
                 className={s.input}
                 placeholder="Password"
-                defaultValue="password2"></input>
-              <Button />
+
+                minLength="6"
+                defaultValue="password2"
+              ></input>
+              <ButtonGo />
             </div>
           </form>
         </div>
