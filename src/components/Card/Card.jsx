@@ -10,8 +10,17 @@ const Card = ({ cardsData }) => {
     <>
       <ul className={s.CardList}>
         {cardsData.map(
-          ({ id, difficulty, favorite, title, date, category, time, type }) => (
-            <li key={id} className={s.CardItem}>
+          ({
+            _id,
+            difficulty,
+            favorite,
+            title,
+            date,
+            category,
+            time,
+            type,
+          }) => (
+            <li key={_id} className={s.CardItem}>
               <div className={s.HeaderWrapper}>
                 <div className={s.levelWrapper}>
                   {difficulty === "hard" ? (
