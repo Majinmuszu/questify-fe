@@ -1,5 +1,5 @@
 import React from "react";
-import ButtonGo from "../../components/Buttons/ButtonGo";
+import ButtonGo from "../../components/ButtonGo/ButtonGo";
 import s from "./Landing.module.css";
 import sc from "../../utils/Container.module.css";
 import {

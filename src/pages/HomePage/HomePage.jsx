@@ -1,7 +1,10 @@
 import React from "react";
 import Tasks from "../../components/Tasks/Tasks";
+import ButtonPlus from "../../components/ButtonPlus/ButtonPlus";
 import s from "./HomePage.module.css";
+// import CardForm from "../../components/CardForm/CardForm";
 import { useGetCardsQuery } from "../../services/api";
+
 
 const cardsTommorow = [
   {
@@ -38,12 +41,14 @@ const Main = () => {
 
   return (
     <div className={s.Container}>
+      {/* <CardForm /> */}
       <Tasks title="Today" cardsData={data ? data.data : []} />
       <Tasks title="Tommorow" cardsData={cardsTommorow} />
       <Tasks
         title="Done"
         cardsData={data ? data.data.filter((data) => data.isDone === true) : []}
-      />
+      /> 
+<ButtonPlus />
     </div>
   );
 };
