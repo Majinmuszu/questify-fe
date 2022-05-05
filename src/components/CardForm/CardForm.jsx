@@ -30,7 +30,14 @@ const CardForm = () => {
     dispatch(formVisibilityAction(false));
   };
   const CustomInput = forwardRef(({ value, onClick }, ref) => (
-    <button className={s.date__input} onClick={onClick} ref={ref}>
+    <button
+      className={s.date__input}
+      onClick={onClick}
+      ref={ref}
+      value={value}
+      type="button"
+      name="date"
+    >
       Choose date - icon
     </button>
   ));
@@ -69,7 +76,6 @@ const CardForm = () => {
           <input name="title" type="text"></input>
           <DatePicker
             autoComplete="off"
-            name="date"
             selected={datePick}
             onChange={(date) => dispatch(datePickAction(date))}
             showTimeSelect
