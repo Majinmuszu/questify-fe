@@ -7,7 +7,6 @@ const Button = () => {
   const dispatch = useDispatch();
   const handleClick = (e) => {
     e.preventDefault();
-    console.log("The link was clicked.");
     dispatch(formVisibilityAction(true));
   };
   return (

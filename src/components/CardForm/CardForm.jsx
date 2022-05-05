@@ -1,4 +1,4 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import s from "./CardForm.module.css";
 import starIcon from "../../icons/star.svg";
 // import ellipseRed from "../../icons/ellipse-red.svg";
@@ -29,6 +29,18 @@ const CardForm = () => {
     addNewCard({ title, difficulty, date, time, type, category });
     dispatch(formVisibilityAction(false));
   };
+  const CustomInput = forwardRef(({ value, onClick }, ref) => (
+    <button
+      className={s.date__input}
+      onClick={onClick}
+      ref={ref}
+      value={value}
+      type="button"
+      name="date"
+    >
+      Choose date - icon
+    </button>
+  ));
   return (
     <>
       <form onSubmit={handleSubmit} className={s.CardItem}>
@@ -64,7 +76,6 @@ const CardForm = () => {
           <input name="title" type="text"></input>
           <DatePicker
             autoComplete="off"
-            name="date"
             selected={datePick}
             onChange={(date) => dispatch(datePickAction(date))}
             showTimeSelect
@@ -72,8 +83,8 @@ const CardForm = () => {
             timeIntervals={15}
             timeCaption="time"
             dateFormat="yyyy-MM-dd HH:mm"
+            customInput={<CustomInput />}
           />
-          <button id="datepick">DATE</button>
         </div>
         <div className={s.CategoryWrapper}>
           <select
