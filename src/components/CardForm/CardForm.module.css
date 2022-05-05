@@ -65,6 +65,11 @@
   border: 0px;
 }
 
+.date__input {
+  border: 0px;
+  color: blue;
+}
+
 .CardTitle {
   font-family: "HelveticaNeueCyr-Bold";
   font-size: 16px;
