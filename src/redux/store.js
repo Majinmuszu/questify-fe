@@ -1,6 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { questifyApi } from "../services/api";
-import { tokenReducer, userReducer } from "./reducers";
+import {
+  datePickReducer,
+  formReducer,
+  tokenReducer,
+  userReducer,
+} from "./reducers";
 
 // const preloadedState = {
 //   authToken: null,
@@ -11,7 +16,11 @@ export const store = configureStore({
     [questifyApi.reducerPath]: questifyApi.reducer,
     authToken: tokenReducer,
     currentUser: userReducer,
+    isFormVisible: formReducer,
+    datePick: datePickReducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(questifyApi.middleware)
+    getDefaultMiddleware({ serializableCheck: false }).concat(
+      questifyApi.middleware
+    ),
 });

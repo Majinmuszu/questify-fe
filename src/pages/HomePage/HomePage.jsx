@@ -2,9 +2,10 @@ import React from "react";
 import Tasks from "../../components/Tasks/Tasks";
 import ButtonPlus from "../../components/ButtonPlus/ButtonPlus";
 import s from "./HomePage.module.css";
-// import CardForm from "../../components/CardForm/CardForm";
+import CardForm from "../../components/CardForm/CardForm";
 import { useGetCardsQuery } from "../../services/api";
 import moment from "moment";
+import { useSelector } from "react-redux";
 
 // const cardsTommorow = [
 //   {
@@ -38,12 +39,11 @@ import moment from "moment";
 
 const HomePage = () => {
   const { data } = useGetCardsQuery();
-
+  const isFormVisible = useSelector((state) => state.isFormVisible);
   const actualDate = moment().format();
 
   return (
     <div className={s.Container}>
-      {/* <CardForm /> */}
       <Tasks
         title="Today"
         cardsData={
@@ -53,7 +53,9 @@ const HomePage = () => {
               )
             : []
         }
-      />
+      >
+        {isFormVisible ? <CardForm /> : null}
+      </Tasks>
       <Tasks
         title="Tommorow"
         cardsData={

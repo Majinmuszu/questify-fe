@@ -16,9 +16,17 @@
   letter-spacing: 0.02em;
   color: #ffffff;
   cursor: pointer;
+  position: fixed;
+  bottom: 45px;
+  right: 15px;
 }
-.buttonWrapper {
-  padding-top: 25px;
-  display: flex;
-  justify-content: right;
+@media screen and (min-width: 530px) {
+  .button {
+    right: 25px;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .button {
+    right: 45px;
+  }
 }
