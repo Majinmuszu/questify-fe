@@ -1,0 +1,131 @@
+.CardList {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  justify-content: flex-start;
+  padding: 0;
+}
+
+.CardItem {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-content: space-between;
+  width: 205px;
+  height: 199px;
+  margin-top: 20px;
+  margin-right: 28px;
+  padding: 21px;
+  background: #fff;
+  box-shadow: -3px -4px 4px rgba(21, 57, 90, 0.03),
+    3px 4px 4px rgba(21, 57, 90, 0.03);
+  border-radius: 10px;
+}
+
+.HeaderWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.levelWrapper {
+  display: flex;
+  align-items: baseline;
+}
+
+.level {
+  display: flex;
+  align-items: baseline;
+  margin-left: 4px;
+  font-family: "HelveticaNeueCyr-Light";
+  font-size: 14px;
+  line-height: 14px;
+  letter-spacing: 0.02em;
+  color: #b9c3c8;
+}
+
+.level:hover {
+  cursor: pointer;
+  color: #000;
+}
+
+.level::first-letter {
+  text-transform: uppercase;
+}
+
+.level__select {
+  display: flex;
+  align-items: baseline;
+  margin-left: 4px;
+  font-family: "HelveticaNeueCyr-Light";
+  font-size: 14px;
+  line-height: 14px;
+  letter-spacing: 0.02em;
+  color: #b9c3c8;
+  border: 0px;
+}
+
+.CardTitle {
+  font-family: "HelveticaNeueCyr-Bold";
+  font-size: 16px;
+  line-height: 16px;
+  text-align: center;
+  color: #282828;
+  margin-bottom: 0;
+}
+
+.CardDate {
+  font-family: "HelveticaNeueCyr-Light";
+  font-size: 14px;
+  line-height: 14px;
+  text-align: center;
+  letter-spacing: 0.02em;
+  color: #b9c3c8;
+  margin-top: 12px;
+}
+
+.CategoryWrapper {
+  display: inherit;
+}
+
+.CardCategory__select {
+  font-family: "HelveticaNeueCyr-Light";
+  font-size: 11px;
+  line-height: 11px;
+  letter-spacing: 0.02em;
+  color: #282828;
+  background: #d3f6ce;
+  border-radius: 0px 15px 15px 0px;
+  text-transform: uppercase;
+  margin-left: -21px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 21px;
+  padding-right: 32px;
+  border: 0px;
+}
+
+.CardCategory {
+  font-family: "HelveticaNeueCyr-Light";
+  font-size: 11px;
+  line-height: 11px;
+  letter-spacing: 0.02em;
+  color: #282828;
+  background: #d3f6ce;
+  border-radius: 0px 15px 15px 0px;
+  text-transform: uppercase;
+  margin-left: -21px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 21px;
+  padding-right: 32px;
+}
+
+.starIcon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}

@@ -1,17 +1,19 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { formVisibilityAction } from "../../redux/actions";
 import s from "./ButtonPlus.module.css";
 
 const Button = () => {
+  const dispatch = useDispatch();
   const handleClick = (e) => {
     e.preventDefault();
     console.log("The link was clicked.");
+    dispatch(formVisibilityAction(true));
   };
   return (
-    <div className={s.buttonWrapper}>
-      <button type="submit" className={s.button} onClick={handleClick}>
-        +
-      </button>
-    </div>
+    <button type="submit" className={s.button} onClick={handleClick}>
+      +
+    </button>
   );
 };
 
