@@ -110,17 +110,23 @@
 }
 
 .date__select {
+  font-family: "HelveticaNeueCyr-Medium";
+  font-size: 14px;
+  line-height: 14px;
   display: inline-block;
-  width: 12px;
-  height: 14px;
-  border: 0px;
+  border: none;
   stroke-width: 0;
   stroke: currentColor;
   fill: currentColor;
   background-color: #fff;
-  background-image: url(/src/icons/calendar.svg);
+  text-align: center;
+  /* background-image: url(/src/icons/calendar.svg); */
+
 }
 
+.calendar__icon {
+  margin-left: 7px;
+}
 .date__select:hover {
   cursor: pointer;
 }

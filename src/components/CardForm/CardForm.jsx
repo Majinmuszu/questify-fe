@@ -1,22 +1,27 @@
 import React, { forwardRef } from "react";
-import s from "./CardForm.module.css";
-import starIcon from "../../icons/star.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { datePickAction, formVisibilityAction } from "../../redux/actions";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
 import { useAddCardMutation } from "../../services/api";
+import DatePicker from "react-datepicker";
+import starIcon from "../../icons/star.svg";
+import calendarIcon from "../../icons/calendar.svg";
+import clearIcon from "../../icons/clear.svg";
+import "react-datepicker/dist/react-datepicker.css";
+import s from "./CardForm.module.css";
 
 const CardForm = () => {
   const dispatch = useDispatch();
+
   const datePick = useSelector((state) => state.datePick);
-  const dateInfo = useSelector((state) => state.dateInfo);
+
   const [addNewCard] = useAddCardMutation();
 
   const handleCancel = (e) => {
     e.preventDefault();
+    dispatch(datePickAction(null));
     dispatch(formVisibilityAction(false));
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -29,7 +34,6 @@ const CardForm = () => {
     const type = "task";
     addNewCard({ title, difficulty, date, time, type, category });
     dispatch(datePickAction(null));
-    form.reset();
     dispatch(formVisibilityAction(false));
   };
 
@@ -42,7 +46,8 @@ const CardForm = () => {
       type="button"
       name="date"
     >
-      {value.slice(0, 10) || "date"}
+      {value.slice(0, 10) || "Date"}
+      <img className={s.calendar__icon} alt="calendar" src={calendarIcon}></img>
     </button>
   ));
   return (
@@ -52,7 +57,7 @@ const CardForm = () => {
           <div className={s.level__wrapper}>
             <select
               id="diff"
-              defaultValue="Normal"
+              defaultValue="normal"
               name="difficulty"
               className={s.level__select}
             >
@@ -76,11 +81,19 @@ const CardForm = () => {
         </div>
         <div className={s.TitleWrapper}>
           <h2 className={s.form__title}>CREATE NEW QUEST</h2>
-          <input className={s.form__input} name="title" type="text"></input>
+          <input
+            className={s.form__input}
+            name="title"
+            required
+            minLength="3"
+            type="text"
+          ></input>
           <div className={s.date__wrapper}>
-            <h2 className={s.date}>{dateInfo}</h2>
+            {/* <h2 className={s.date}>{dateInfo}</h2> */}
             <div>
               <DatePicker
+                required
+                minLength="8"
                 autoComplete="off"
                 selected={datePick}
                 onChange={(date) => dispatch(datePickAction(date))}
@@ -98,7 +111,7 @@ const CardForm = () => {
           <div className={s.category__wrapper}>
             <select
               id="cat"
-              defaultValue="Stuff"
+              defaultValue="stuff"
               name="category"
               className={s.category__select}
             >
@@ -124,7 +137,7 @@ const CardForm = () => {
           </div>
           <div className={s.button__wrapper}>
             <button className={s.button__x} onClick={handleCancel}>
-              X
+              <img alt="clear" src={clearIcon}></img>
             </button>
             <button className={s.button__create} type="submit">
               CREATE
