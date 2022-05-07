@@ -25,15 +25,6 @@ const App = () => {
           </>
         }
       />
-      <Route
-        path="/card/complete/:id"
-        element={
-          <>
-            <Header />
-            <HomePage />
-          </>
-        }
-      />
     </Routes>
   );
 };
