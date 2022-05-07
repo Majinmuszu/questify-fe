@@ -44,33 +44,38 @@ const HomePage = () => {
 
   return (
     <div className={s.Container}>
-      <Tasks
-        title="Today"
-        cardsData={
-          data
-            ? data.data.filter(
-                (data) => moment(data.date).diff(actualDate, "days") === 0
-              )
-            : []
-        }
-      >
-        {isFormVisible ? <CardForm /> : null}
-      </Tasks>
-      <Tasks
-        title="Tommorow"
-        cardsData={
-          data
-            ? data.data.filter(
-                (data) => moment(data.date).diff(actualDate, "days") > 0
-              )
-            : []
-        }
-      />
-      <Tasks
-        title="Done"
-        cardsData={data ? data.data.filter((data) => data.isDone === true) : []}
-      />
-      <ButtonPlus />
+      <div className={s.Wrapper}>
+        <Tasks
+          title="Today"
+          cardsData={
+            data
+              ? data.data.filter(
+                  (data) => moment(data.date).diff(actualDate, "days") === 0
+                )
+              : []
+          }
+          todaysDate={"Today"}>
+          {isFormVisible ? <CardForm /> : null}
+        </Tasks>
+        <Tasks
+          title="Tommorow"
+          cardsData={
+            data
+              ? data.data.filter(
+                  (data) => moment(data.date).diff(actualDate, "days") > 0
+                )
+              : []
+          }
+          todaysDate={"Tommorow"}
+        />
+        <Tasks
+          title="Done"
+          cardsData={
+            data ? data.data.filter((data) => data.isDone === true) : []
+          }
+        />
+        <ButtonPlus />
+      </div>
     </div>
   );
 };

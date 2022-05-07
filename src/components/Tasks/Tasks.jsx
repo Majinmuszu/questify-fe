@@ -2,7 +2,7 @@ import React from "react";
 import Card from "../Card/Card";
 import s from "./Tasks.module.css";
 
-const Tasks = ({ title, cardsData, children }) => {
+const Tasks = ({ title, cardsData, children, todaysDate }) => {
   return (
     <div className={s.Wrapper}>
       <div className={s.TitleWrapper}>
@@ -10,7 +10,7 @@ const Tasks = ({ title, cardsData, children }) => {
         {/* <p className={s.Dashed}></p> */}
       </div>
       {children}
-      <Card cardsData={cardsData} />
+      <Card cardsData={cardsData} todaysDate={todaysDate} />
     </div>
   );
 };
