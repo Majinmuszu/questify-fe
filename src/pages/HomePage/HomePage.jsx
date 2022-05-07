@@ -53,7 +53,8 @@ const HomePage = () => {
                   (data) => moment(data.date).diff(actualDate, "days") === 0
                 )
               : []
-          }>
+          }
+          todaysDate={"Today"}>
           {isFormVisible ? <CardForm /> : null}
         </Tasks>
         <Tasks
@@ -65,6 +66,7 @@ const HomePage = () => {
                 )
               : []
           }
+          todaysDate={"Tommorow"}
         />
         <Tasks
           title="Done"

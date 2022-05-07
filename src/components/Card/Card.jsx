@@ -5,7 +5,7 @@ import ellipseRed from "../../icons/ellipse-red.svg";
 import ellipseGreen from "../../icons/ellipse-green.svg";
 import ellipseBlue from "../../icons/ellipse-blue.svg";
 
-const Card = ({ cardsData }) => {
+const Card = ({ cardsData, todaysDate }) => {
   return (
     <>
       <ul className={s.CardList}>
@@ -43,7 +43,9 @@ const Card = ({ cardsData }) => {
               </div>
               <div className={s.TitleWrapper}>
                 <h2 className={s.CardTitle}>{title}</h2>
-                <h4 className={s.CardDate}>{date}</h4>
+                <h4 className={s.CardDate}>
+                  {todaysDate ? todaysDate + ", " + time : date + ", " + time}
+                </h4>
               </div>
               <div className={s.CategoryWrapper}>
                 <p className={s.CardCategory}>{category}</p>
