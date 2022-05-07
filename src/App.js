@@ -13,11 +13,20 @@ const App = () => {
         element={
           <>
             <Landing />
-          </> 
+          </>
         }
       />
       <Route
         path="/home"
+        element={
+          <>
+            <Header />
+            <HomePage />
+          </>
+        }
+      />
+      <Route
+        path="/card/complete/:id"
         element={
           <>
             <Header />

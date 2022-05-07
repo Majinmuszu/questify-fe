@@ -97,6 +97,7 @@
   stroke-width: 0;
   stroke: currentColor;
   fill: currentColor;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 530px) {

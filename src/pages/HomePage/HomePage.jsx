@@ -51,7 +51,9 @@ const HomePage = () => {
           cardsData={
             data
               ? data.data.filter(
-                  (data) => moment(data.date).diff(actualDate, "days") === 0
+                  (data) =>
+                    moment(data.date).diff(actualDate, "days") <= 0 &&
+                    !data.isDone
                 )
               : []
           }
@@ -63,7 +65,9 @@ const HomePage = () => {
           cardsData={
             data
               ? data.data.filter(
-                  (data) => moment(data.date).diff(actualDate, "days") > 0
+                  (data) =>
+                    moment(data.date).diff(actualDate, "days") > 0 &&
+                    !data.isDone
                 )
               : []
           }

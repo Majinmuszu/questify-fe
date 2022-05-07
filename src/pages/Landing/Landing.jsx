@@ -21,6 +21,7 @@ import { Report } from "notiflix/build/notiflix-report-aio";
 
 const Landing = () => {
   const { data, error, isLoading } = useGetUsersQuery();
+  // console.log(data.data);
   const [loginUser, loginStatus] = useLoginUserMutation();
   const [registerUser] = useRegisterUserMutation();
 
@@ -105,10 +106,8 @@ const Landing = () => {
                 name="password"
                 className={s.input}
                 placeholder="Password"
-
                 minLength="6"
-                defaultValue="password2"
-              ></input>
+                defaultValue="password2"></input>
               <ButtonGo />
             </div>
           </form>
