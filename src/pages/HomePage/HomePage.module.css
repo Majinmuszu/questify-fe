@@ -1,5 +1,4 @@
 .Container {
-  /* height: 100vh; */
   background: #f2f3f7;
   padding: 0 30px 30px 30px;
 }
@@ -7,7 +6,7 @@
 .Wrapper {
   margin: 0 auto;
   max-width: 1280px;
-  padding: 30px;
+  /* padding: 30px; */
 }
 
 @media screen and (max-width: 530px) {

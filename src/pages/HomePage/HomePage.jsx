@@ -40,6 +40,7 @@ import { useSelector } from "react-redux";
 const HomePage = () => {
   const { data } = useGetCardsQuery();
   const isFormVisible = useSelector((state) => state.isFormVisible);
+  const isDoneVisible = useSelector((state) => state.isDoneVisible);
   const actualDate = moment().format();
 
   return (
@@ -71,8 +72,11 @@ const HomePage = () => {
         <Tasks
           title="Done"
           cardsData={
-            data ? data.data.filter((data) => data.isDone === true) : []
+            isDoneVisible
+              ? data.data.filter((data) => data.isDone === true)
+              : []
           }
+          dashed={true}
         />
         <ButtonPlus />
       </div>
