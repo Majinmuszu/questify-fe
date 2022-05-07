@@ -1,7 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { questifyApi } from "../services/api";
 import {
-  dateInfoReducer,
   datePickReducer,
   formReducer,
   tokenReducer,
@@ -19,7 +18,6 @@ export const store = configureStore({
     currentUser: userReducer,
     isFormVisible: formReducer,
     datePick: datePickReducer,
-    dateInfo: dateInfoReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({ serializableCheck: false }).concat(

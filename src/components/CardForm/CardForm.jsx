@@ -2,11 +2,7 @@ import React, { forwardRef } from "react";
 import s from "./CardForm.module.css";
 import starIcon from "../../icons/star.svg";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  datePickAction,
-  formVisibilityAction,
-  dateInfoAction,
-} from "../../redux/actions";
+import { datePickAction, formVisibilityAction } from "../../redux/actions";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useAddCardMutation } from "../../services/api";
@@ -23,14 +19,17 @@ const CardForm = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    const formDate = e.target.date.value;
+    const form = e.target;
+    const formDate = form.date.value;
     const date = formDate.slice(0, 10);
     const time = formDate.slice(11, 16);
-    const difficulty = e.target.difficulty.value;
-    const category = e.target.category.value;
-    const title = e.target.title.value;
+    const difficulty = form.difficulty.value;
+    const category = form.category.value;
+    const title = form.title.value;
     const type = "task";
     addNewCard({ title, difficulty, date, time, type, category });
+    dispatch(datePickAction(null));
+    form.reset();
     dispatch(formVisibilityAction(false));
   };
 
@@ -42,7 +41,9 @@ const CardForm = () => {
       value={value}
       type="button"
       name="date"
-    >{value.slice(0, 10)}</button>
+    >
+      {value.slice(0, 10) || "date"}
+    </button>
   ));
   return (
     <>
@@ -77,7 +78,7 @@ const CardForm = () => {
           <h2 className={s.form__title}>CREATE NEW QUEST</h2>
           <input className={s.form__input} name="title" type="text"></input>
           <div className={s.date__wrapper}>
-            <h2 className={s.date}></h2>
+            <h2 className={s.date}>{dateInfo}</h2>
             <div>
               <DatePicker
                 autoComplete="off"
