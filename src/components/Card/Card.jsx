@@ -13,14 +13,14 @@ const Card = ({ cardsData, todaysDate }) => {
   const setDoneStatus = (e) => {
     e.preventDefault();
     const cardID = e.target.id;
-    let zmienna = { cardID, isDone: true };
+    let queryObject = { cardID, isDone: true };
     Confirm.show(
       "Please confirm",
       "Are you sure you done this task?",
       "Yes",
       "No",
       () => {
-        isDoneStatus(zmienna);
+        isDoneStatus(queryObject);
       },
       () => {
         // alert("If you say so...");
