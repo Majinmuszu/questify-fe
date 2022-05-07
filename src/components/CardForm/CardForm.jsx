@@ -42,7 +42,7 @@ const CardForm = () => {
       value={value}
       type="button"
       name="date"
-    ></button>
+    >{value.slice(0, 10)}</button>
   ));
   return (
     <>
@@ -77,15 +77,12 @@ const CardForm = () => {
           <h2 className={s.form__title}>CREATE NEW QUEST</h2>
           <input className={s.form__input} name="title" type="text"></input>
           <div className={s.date__wrapper}>
-            <h2 className={s.date}>{dateInfo}</h2>
+            <h2 className={s.date}></h2>
             <div>
               <DatePicker
                 autoComplete="off"
                 selected={datePick}
-                onChange={(date, value) => {
-                  (date) => dispatch(datePickAction(date));
-                  (value) => dispatch(dateInfoAction(value));
-                }}
+                onChange={(date) => dispatch(datePickAction(date))}
                 showTimeSelect
                 timeFormat="HH:mm"
                 timeIntervals={15}
