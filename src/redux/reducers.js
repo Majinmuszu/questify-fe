@@ -4,6 +4,7 @@ import {
   tokenAction,
   formVisibilityAction,
   datePickAction,
+  dateInfoAction,
 } from "./actions";
 
 const tokenReducer = createReducer(null, {
@@ -18,5 +19,14 @@ const formReducer = createReducer(false, {
 const datePickReducer = createReducer(null, {
   [datePickAction]: (state, { payload }) => payload,
 });
+const dateInfoReducer = createReducer(null, {
+  [dateInfoAction]: (state, { payload }) => payload,
+});
 
-export { tokenReducer, userReducer, formReducer, datePickReducer };
+export {
+  tokenReducer,
+  userReducer,
+  formReducer,
+  datePickReducer,
+  dateInfoReducer,
+};
