@@ -21,6 +21,9 @@
     3px 4px 4px rgba(21, 57, 90, 0.03);
   border-radius: 10px;
 }
+.CardItem:last-child {
+  margin-right: 0;
+}
 
 .HeaderWrapper {
   display: flex;
@@ -95,3 +98,17 @@
   stroke: currentColor;
   fill: currentColor;
 }
+
+@media screen and (max-width: 530px) {
+  .CardItem {
+    width: 290px;
+    height: 260px;
+  }
+}
+
+/* @media screen and (min-width: 530px) {
+  .CardItem {
+    width: 205px;
+    height: 199px;
+  }
+} */
