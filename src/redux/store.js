@@ -3,6 +3,7 @@ import { questifyApi } from "../services/api";
 import {
   datePickReducer,
   formReducer,
+  showDoneReducer,
   tokenReducer,
   userReducer,
 } from "./reducers";
@@ -18,6 +19,7 @@ export const store = configureStore({
     currentUser: userReducer,
     isFormVisible: formReducer,
     datePick: datePickReducer,
+    isDoneVisible: showDoneReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({ serializableCheck: false }).concat(

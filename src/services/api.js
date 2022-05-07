@@ -88,11 +88,11 @@ const questifyApi = createApi({
     }),
 
     updateCardStatus: builder.mutation({
-      query: (cardID, isDone) => ({
+      query: ({ cardID, isDone }) => ({
         // example isDone = {isDone: true/false}
         url: `card/complete/${cardID}`,
         method: "PATCH",
-        body: isDone,
+        body: { isDone },
       }),
       invalidatesTags: ["Cards"],
     }),

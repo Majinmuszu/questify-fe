@@ -13,7 +13,7 @@ const App = () => {
         element={
           <>
             <Landing />
-          </> 
+          </>
         }
       />
       <Route
