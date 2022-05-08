@@ -55,6 +55,12 @@ const CardForm = () => {
       <img className={s.calendar__icon} alt="calendar" src={calendarIcon}></img>
     </button>
   ));
+  const filterPassedTime = (time) => {
+    const currentDate = new Date();
+    const selectedDate = new Date(time);
+
+    return currentDate.getTime() < selectedDate.getTime();
+  };
   return (
     <>
       <form onSubmit={handleSubmit} className={s.form}>
@@ -106,6 +112,7 @@ const CardForm = () => {
                 timeCaption="time"
                 dateFormat="yyyy-MM-dd HH:mm"
                 minDate={new Date()}
+                filterTime={filterPassedTime}
                 customInput={<CustomInput />}
               />
             </div>
