@@ -1,31 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import s from "./Card.module.css";
 import starIcon from "../../icons/star.svg";
+import awardIcon from "../../icons/award.svg";
+import arrowTaskIcon from "../../icons/arrowTask.svg";
 import ellipseRed from "../../icons/ellipse-red.svg";
 import ellipseGreen from "../../icons/ellipse-green.svg";
 import ellipseBlue from "../../icons/ellipse-blue.svg";
 import { useUpdateCardStatusMutation } from "../../services/api";
-import { Confirm } from "notiflix";
 
 const Card = ({ cardsData, todaysDate }) => {
   const [isDoneStatus] = useUpdateCardStatusMutation();
+  const [isAward, setIsAward] = useState(false);
+  const [cardID, setCardID] = useState("");
 
   const setDoneStatus = (e) => {
     e.preventDefault();
     const cardID = e.target.id;
+    setCardID(cardID);
+    setIsAward(true);
+  };
+
+  const moveToDone = () => {
     let queryObject = { cardID, isDone: true };
-    Confirm.show(
-      "Please confirm",
-      "Are you sure you done this task?",
-      "Yes",
-      "No",
-      () => {
-        isDoneStatus(queryObject);
-      },
-      () => {
-        // alert("If you say so...");
-      }
-    );
+    isDoneStatus(queryObject);
   };
 
   return (
@@ -43,40 +40,65 @@ const Card = ({ cardsData, todaysDate }) => {
             type,
           }) => (
             <li key={_id} className={s.CardItem}>
-              <div className={s.HeaderWrapper}>
-                <div className={s.levelWrapper}>
-                  {difficulty === "hard" ? (
-                    <img src={ellipseRed} alt="star" tabIndex="1"></img>
-                  ) : difficulty === "normal" ? (
-                    <img src={ellipseGreen} alt="star" tabIndex="1"></img>
-                  ) : difficulty === "easy" ? (
-                    <img src={ellipseBlue} alt="star" tabIndex="1"></img>
-                  ) : (
-                    <></>
-                  )}
-
-                  <p className={s.level}>{difficulty}</p>
+              {isAward && _id === cardID ? (
+                <div className={s.awardWrapper}>
+                  <p className={s.awardTitle}>
+                    COMPLETED: <span className={s.awardTitleName}>{title}</span>
+                  </p>
+                  <img
+                    className={s.awardIcon}
+                    src={awardIcon}
+                    alt="award"
+                    tabIndex="1"
+                  />
+                  <div className={s.awardConfirmWrapper}>
+                    <p className={s.awardConfirm} onClick={moveToDone}>
+                      Continue
+                    </p>
+                    <img
+                      className={s.arrowTaskIcon}
+                      src={arrowTaskIcon}
+                      alt="award"
+                      tabIndex="1"
+                    />
+                  </div>
                 </div>
-                {/* <button id={_id} onClick={setDoneStatus}> */}
-                {/* <Link to="/card/complete/6274348a6e82ebbc72257c4c">but</Link> */}
-                {/* </button> */}
-                <img
-                  id={_id}
-                  className={s.starIcon}
-                  src={starIcon}
-                  alt="star"
-                  tabIndex="1"
-                  onClick={setDoneStatus}></img>
-              </div>
-              <div className={s.TitleWrapper}>
-                <h2 className={s.CardTitle}>{title}</h2>
-                <h4 className={s.CardDate}>
-                  {todaysDate ? todaysDate + ", " + time : date + ", " + time}
-                </h4>
-              </div>
-              <div className={s.CategoryWrapper}>
-                <p className={s.CardCategory}>{category}</p>
-              </div>
+              ) : (
+                <>
+                  <div className={s.HeaderWrapper}>
+                    <div className={s.levelWrapper}>
+                      {difficulty === "hard" ? (
+                        <img src={ellipseRed} alt="star" tabIndex="1"></img>
+                      ) : difficulty === "normal" ? (
+                        <img src={ellipseGreen} alt="star" tabIndex="1"></img>
+                      ) : difficulty === "easy" ? (
+                        <img src={ellipseBlue} alt="star" tabIndex="1"></img>
+                      ) : (
+                        <></>
+                      )}
+                      <p className={s.level}>{difficulty}</p>
+                    </div>
+                    <img
+                      id={_id}
+                      className={s.starIcon}
+                      src={starIcon}
+                      alt="star"
+                      tabIndex="1"
+                      onClick={setDoneStatus}></img>
+                  </div>
+                  <div className={s.TitleWrapper}>
+                    <h2 className={s.CardTitle}>{title}</h2>
+                    <h4 className={s.CardDate}>
+                      {todaysDate
+                        ? todaysDate + ", " + time
+                        : date + ", " + time}
+                    </h4>
+                  </div>
+                  <div className={s.CategoryWrapper}>
+                    <p className={s.CardCategory}>{category}</p>
+                  </div>
+                </>
+              )}
             </li>
           )
         )}

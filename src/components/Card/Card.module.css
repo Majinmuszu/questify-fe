@@ -100,6 +100,52 @@
   cursor: pointer;
 }
 
+.awardWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.awardTitle {
+  display: flex;
+  justify-content: center;
+  font-family: "HelveticaNeueCyr-Light";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 11px;
+  text-transform: uppercase;
+  color: #000000;
+}
+
+.awardTitleName {
+  font-family: "HelveticaNeueCyr-Light";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 12px;
+  text-decoration-line: underline;
+  color: #00d7ff;
+  overflow: hidden;
+}
+
+.awardConfirmWrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.awardConfirm {
+  font-family: "HelveticaNeueCyr-Light";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 12px;
+  text-align: center;
+  color: #b9c3c8;
+  margin-right: 7px;
+  cursor: pointer;
+}
+
 @media screen and (max-width: 530px) {
   .CardItem {
     width: 290px;
