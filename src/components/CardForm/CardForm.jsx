@@ -66,7 +66,45 @@ const CardForm = () => {
       <form onSubmit={handleSubmit} className={s.form}>
         <div className={s.header__wrapper}>
           <div className={s.level__wrapper}>
-            <select
+            <div>
+              <button className={s.level__button}>
+                <span className={s.level__select}>Easy</span>
+                <div className={s.level__arrow}></div>
+              </button>
+              <div className={s.level__dropdown}>
+                <label className={s.form__easy} for="easy">
+                  Easy
+                </label>
+                <input
+                  className={s.option}
+                  type="radio"
+                  id="easy"
+                  name="easy"
+                  value="easy"
+                />
+                <label className={s.form__normal} for="normal">
+                  Normal
+                </label>
+                <input
+                  className={s.option}
+                  type="radio"
+                  id="normal"
+                  name="normal"
+                  value="normal"
+                />
+                <label className={s.form__hard} for="easy">
+                  Hard
+                </label>
+                <input
+                  className={s.option}
+                  type="radio"
+                  id="hard"
+                  name="hard"
+                  value="hard"
+                />
+              </div>
+            </div>
+            {/* <select
               id="diff"
               defaultValue="normal"
               name="difficulty"
@@ -81,7 +119,7 @@ const CardForm = () => {
               <option value="hard" className={s.level__hard}>
                 Hard
               </option>
-            </select>
+            </select> */}
           </div>
           <img
             className={s.star__icon}
