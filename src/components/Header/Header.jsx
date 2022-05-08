@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import s from "./Header.module.css";
 import logoutIcon from "../../icons/logout.svg";
 import UserName from "../UserName/UserName";
