@@ -127,6 +127,7 @@
   text-decoration-line: underline;
   color: #00d7ff;
   overflow: hidden;
+  margin-left: 7px;
 }
 
 .awardConfirmWrapper {
