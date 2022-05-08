@@ -1,4 +1,4 @@
-import React, { forwardRef } from "react";
+import React, { forwardRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { datePickAction, formVisibilityAction } from "../../redux/actions";
 import { useAddCardMutation } from "../../services/api";
@@ -6,11 +6,20 @@ import DatePicker from "react-datepicker";
 import starIcon from "../../icons/star.svg";
 import calendarIcon from "../../icons/calendar.svg";
 import clearIcon from "../../icons/clear.svg";
+import ellipseBlue from "../../icons/ellipse-blue.svg";
+import ellipseRed from "../../icons/ellipse-red.svg";
+import ellipseGreen from "../../icons/ellipse-green.svg";
+
 import "react-datepicker/dist/react-datepicker.css";
 import s from "./CardForm.module.css";
 import { Notify } from "notiflix";
 
 const CardForm = () => {
+  const [isDiffActive, setDiffActive] = useState(false);
+  const [isCatActive, setCatActive] = useState(false);
+  const [difficulty, setDifficulty] = useState("Normal");
+  const [category, setCategory] = useState("Stuff");
+
   const dispatch = useDispatch();
 
   const datePick = useSelector((state) => state.datePick);
@@ -61,65 +70,84 @@ const CardForm = () => {
 
     return currentDate.getTime() < selectedDate.getTime();
   };
+
+  const dropdownDiffHandler = (e) => {
+    e.preventDefault();
+    isDiffActive ? setDiffActive(false) : setDiffActive(true);
+  };
+
+  const handleDiffRadio = (e) => {
+    setDifficulty(e.target.id)
+    setDiffActive(false)
+  }
+
+  const dropdownCatHandler = (e) => {
+    e.preventDefault();
+    isCatActive ? setCatActive(false) : setCatActive(true);
+  };
+
+  const handleCatRadio = (e) => {
+    setCategory(e.target.id)
+    setCatActive(false)
+  }
   return (
     <>
       <form onSubmit={handleSubmit} className={s.form}>
         <div className={s.header__wrapper}>
           <div className={s.level__wrapper}>
             <div>
-              <button className={s.level__button}>
-                <span className={s.level__select}>Easy</span>
+              <button
+                className={s.level__button}
+                type="button"
+                onClick={dropdownDiffHandler}
+              >{difficulty === "Hard" ? (
+                <img className={s.ellipse} src={ellipseRed} alt="star" tabIndex="1"></img>
+              ) : difficulty === "Normal" ? (
+                <img className={s.ellipse} src={ellipseGreen} alt="star" tabIndex="1"></img>
+              ) : difficulty === "Easy" ? (
+                <img className={s.ellipse} src={ellipseBlue} alt="star" tabIndex="1"></img>
+              ) : (
+                <></>
+              )}
+                <span className={s.level__select}>{difficulty}</span>
                 <div className={s.level__arrow}></div>
               </button>
-              <div className={s.level__dropdown}>
-                <label className={s.form__easy} for="easy">
+              <div className={isDiffActive ? s.level__dropdown : s.hidden}>
+                <label className={s.form__easy} htmlFor="Easy">
                   Easy
                 </label>
                 <input
                   className={s.option}
                   type="radio"
-                  id="easy"
-                  name="easy"
+                  id="Easy"
+                  name="difficulty"
                   value="easy"
-                />
-                <label className={s.form__normal} for="normal">
+                  onClick={handleDiffRadio}
+                  />
+                <label className={s.form__normal} htmlFor="Normal">
                   Normal
                 </label>
                 <input
                   className={s.option}
                   type="radio"
-                  id="normal"
-                  name="normal"
+                  id="Normal"
+                  name="difficulty"
                   value="normal"
-                />
-                <label className={s.form__hard} for="easy">
+                  onClick={handleDiffRadio}
+                  />
+                <label className={s.form__hard} htmlFor="Hard">
                   Hard
                 </label>
                 <input
                   className={s.option}
                   type="radio"
-                  id="hard"
-                  name="hard"
+                  id="Hard"
+                  name="difficulty"
                   value="hard"
-                />
+                  onClick={handleDiffRadio}
+                  />
               </div>
             </div>
-            {/* <select
-              id="diff"
-              defaultValue="normal"
-              name="difficulty"
-              className={s.level__select}
-            >
-              <option value="easy" className={s.level__easy}>
-                Easy
-              </option>
-              <option value="normal" className={s.level__normal}>
-                Normal
-              </option>
-              <option value="hard" className={s.level__hard}>
-                Hard
-              </option>
-            </select> */}
           </div>
           <img
             className={s.star__icon}
@@ -138,7 +166,6 @@ const CardForm = () => {
             type="text"
           ></input>
           <div className={s.date__wrapper}>
-            {/* <h2 className={s.date}>{dateInfo}</h2> */}
             <div>
               <DatePicker
                 autoComplete="off"

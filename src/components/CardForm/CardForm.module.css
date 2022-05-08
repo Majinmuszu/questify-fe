@@ -208,11 +208,11 @@
   border: 0px;
 }
 
-.level__select::before {
+/* .level__select::before {
   content: url(/src/icons/ellipse-blue.svg);
   display: block;
   padding-right: 5px;
-}
+} */
 /* 
 .level__arrow {
   background: url(/src/icons/select-arrow.svg) no-repeat 100% 50%;
@@ -253,7 +253,6 @@
   top: -18px;
   left: 0;
 }
-
 .form__easy {
   display: flex;
   align-items: baseline;
@@ -325,10 +324,10 @@
   color: #000;
 }
 
-.option {
+.option, .hidden {
   display: none;
 }
 
-.hidden {
-  display: none;
+.ellipse {
+  margin-right: 7px;
 }
