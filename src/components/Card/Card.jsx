@@ -7,7 +7,7 @@ import ellipseRed from "../../icons/ellipse-red.svg";
 import ellipseGreen from "../../icons/ellipse-green.svg";
 import ellipseBlue from "../../icons/ellipse-blue.svg";
 import { useUpdateCardStatusMutation } from "../../services/api";
-// import { Animated } from "react-animated-css";
+import { Animated } from "react-animated-css";
 
 const Card = ({ cardsData, todaysDate }) => {
   const [isDoneStatus] = useUpdateCardStatusMutation();
@@ -49,27 +49,27 @@ const Card = ({ cardsData, todaysDate }) => {
                       {title.length > 11 ? title.slice(0, 11) + "..." : title}
                     </span>
                   </p>
-                  <img
-                    className={s.awardIcon}
-                    src={awardIcon}
-                    alt="award"
-                    tabIndex="1"
-                  />
+                  <Animated
+                    animationIn="bounceIn"
+                    animationOut="fadeOut"
+                    isVisible={true}>
+                    <img
+                      className={s.awardIcon}
+                      src={awardIcon}
+                      alt="award"
+                      tabIndex="1"
+                    />
+                  </Animated>
                   <div className={s.awardConfirmWrapper}>
                     <p className={s.awardConfirm} onClick={moveToDone}>
                       Continue
                     </p>
-                    {/* <Animated
-                      animationIn="bounceInLeft"
-                      animationOut="fadeOut"
-                      isVisible={true}> */}
                     <img
                       className={s.arrowTaskIcon}
                       src={arrowTaskIcon}
                       alt="award"
                       tabIndex="1"
                     />
-                    {/* </Animated> */}
                   </div>
                 </div>
               ) : (
