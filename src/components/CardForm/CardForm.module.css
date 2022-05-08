@@ -1,5 +1,6 @@
 .form {
   display: flex;
+  position: relative;
   flex-direction: column;
   justify-content: space-between;
   align-content: space-between;
@@ -249,6 +250,8 @@
   box-shadow: 0px 0px 10px 4px rgba(196, 196, 196, 0.4);
   position: absolute;
   z-index: 1;
+  top: -18px;
+  left: 0;
 }
 
 .form__easy {
