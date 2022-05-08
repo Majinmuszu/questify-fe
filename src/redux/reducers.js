@@ -7,10 +7,11 @@ import {
   showDoneTasksAction,
 } from "./actions";
 
+
 const tokenReducer = createReducer(null, {
   [tokenAction]: (state, { payload }) => payload,
 });
-const userReducer = createReducer("", {
+const userReducer = createReducer(null, {
   [currentUserAction]: (state, { payload }) => payload,
 });
 const formReducer = createReducer(false, {

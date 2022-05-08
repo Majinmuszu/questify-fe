@@ -11,13 +11,10 @@ import { useDispatch } from "react-redux";
 import { currentUserAction, tokenAction } from "../../redux/actions";
 import { useNavigate } from "react-router";
 import { useEffect } from "react";
-import { saveTokenToSS } from "../../services/sessionStorage";
+import { saveTokenToSS, saveUserToSS } from "../../services/sessionStorage";
 import { Notify } from "notiflix/build/notiflix-notify-aio";
 import { Loading } from "notiflix/build/notiflix-loading-aio";
 import { Report } from "notiflix/build/notiflix-report-aio";
-
-// TODO zlikwidować dziwny błąd - przy pierwszym loginie (lub po odswiezeniu i loginie)
-// wywala warning w konsoli.
 
 const Landing = () => {
   const { data, error, isLoading } = useGetUsersQuery();
@@ -67,12 +64,17 @@ const Landing = () => {
       const { token, user } = loginStatus.data.data;
       dispatch(tokenAction(token));
       saveTokenToSS(token);
+      saveUserToSS(user.email);
       dispatch(currentUserAction(user.email));
       setTimeout(() => {
         navigate("/home");
       }, 700);
     }
   });
+  useEffect(() => {
+    saveTokenToSS(null);
+    saveUserToSS(null);
+  }, []);
 
   return (
     <div className={s.landing}>
@@ -97,7 +99,8 @@ const Landing = () => {
                 name="email"
                 className={s.input}
                 placeholder="Email"
-                defaultValue="zbyszek@mail.com"></input>
+                defaultValue="zbyszek@mail.com"
+              ></input>
             </div>
             <div className={s.spacer__password}>
               <label htmlFor="password" className={s} required></label>
@@ -107,7 +110,8 @@ const Landing = () => {
                 className={s.input}
                 placeholder="Password"
                 minLength="6"
-                defaultValue="password2"></input>
+                defaultValue="password2"
+              ></input>
               <ButtonGo />
             </div>
           </form>
