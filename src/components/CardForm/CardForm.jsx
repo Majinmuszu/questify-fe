@@ -105,6 +105,7 @@ const CardForm = () => {
                 timeIntervals={15}
                 timeCaption="time"
                 dateFormat="yyyy-MM-dd HH:mm"
+                minDate={new Date()}
                 customInput={<CustomInput />}
               />
             </div>
