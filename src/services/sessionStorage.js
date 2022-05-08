@@ -18,5 +18,32 @@ const loadTokenFromSS = () => {
 const removeTokenFromSS = () => {
   sessionStorage.removeItem("TOKEN");
 };
+const saveUserToSS = (value) => {
+  try {
+    const serializedState = JSON.stringify(value);
+    sessionStorage.setItem("USER", serializedState);
+  } catch (error) {
+    console.error("Set state error: ", error.message);
+  }
+};
 
-export { saveTokenToSS, loadTokenFromSS, removeTokenFromSS };
+const loadUserFromSS = () => {
+  try {
+    const serializedState = sessionStorage.getItem("USER");
+    return serializedState === null ? undefined : JSON.parse(serializedState);
+  } catch (error) {
+    console.error("Get state error: ", error.message);
+  }
+};
+const removeUserFromSS = () => {
+  sessionStorage.removeItem("USER");
+};
+
+export {
+  saveTokenToSS,
+  loadTokenFromSS,
+  removeTokenFromSS,
+  saveUserToSS,
+  loadUserFromSS,
+  removeUserFromSS,
+};
