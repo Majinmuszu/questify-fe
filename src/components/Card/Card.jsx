@@ -104,7 +104,24 @@ const Card = ({ cardsData, todaysDate }) => {
                     </h4>
                   </div>
                   <div className={s.CategoryWrapper}>
-                    <p className={s.CardCategory}>{category}</p>
+                    <p
+                      className={
+                        category === "stuff"
+                          ? `${s.CardCategory} ${s.stuff}`
+                          : category === "work"
+                          ? `${s.CardCategory} ${s.work}`
+                          : category === "family"
+                          ? `${s.CardCategory} ${s.family}`
+                          : category === "health"
+                          ? `${s.CardCategory} ${s.health}`
+                          : category === "learning"
+                          ? `${s.CardCategory} ${s.learning}`
+                          : category === "leisure"
+                          ? `${s.CardCategory} ${s.leisure}`
+                          : s.CardCategory
+                      }>
+                      {category}
+                    </p>
                   </div>
                 </>
               )}

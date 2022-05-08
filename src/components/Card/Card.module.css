@@ -80,7 +80,6 @@
   line-height: 11px;
   letter-spacing: 0.02em;
   color: #282828;
-  background: #d3f6ce;
   border-radius: 0px 15px 15px 0px;
   text-transform: uppercase;
   margin-left: -21px;
@@ -88,6 +87,30 @@
   padding-bottom: 8px;
   padding-left: 21px;
   padding-right: 32px;
+}
+
+.work {
+  background: #d3f6ce;
+}
+
+.family {
+  background: #ffe6d3;
+}
+
+.health {
+  background: #cdf7ff;
+}
+
+.learning {
+  background: #fff6c0;
+}
+
+.leisure {
+  background: #f8d2ff;
+}
+
+.stuff {
+  background: #b9c3c8;
 }
 
 .starIcon {
