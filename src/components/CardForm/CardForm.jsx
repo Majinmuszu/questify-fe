@@ -8,6 +8,7 @@ import calendarIcon from "../../icons/calendar.svg";
 import clearIcon from "../../icons/clear.svg";
 import "react-datepicker/dist/react-datepicker.css";
 import s from "./CardForm.module.css";
+import { Notify } from "notiflix";
 
 const CardForm = () => {
   const dispatch = useDispatch();
@@ -32,9 +33,13 @@ const CardForm = () => {
     const category = form.category.value;
     const title = form.title.value;
     const type = "task";
-    addNewCard({ title, difficulty, date, time, type, category });
-    dispatch(datePickAction(null));
-    dispatch(formVisibilityAction(false));
+    if (!date) {
+      Notify.failure("Please choose date");
+    } else {
+      addNewCard({ title, difficulty, date, time, type, category });
+      dispatch(datePickAction(null));
+      dispatch(formVisibilityAction(false));
+    }
   };
 
   const CustomInput = forwardRef(({ value, onClick }, ref) => (
@@ -50,6 +55,12 @@ const CardForm = () => {
       <img className={s.calendar__icon} alt="calendar" src={calendarIcon}></img>
     </button>
   ));
+  const filterPassedTime = (time) => {
+    const currentDate = new Date();
+    const selectedDate = new Date(time);
+
+    return currentDate.getTime() < selectedDate.getTime();
+  };
   return (
     <>
       <form onSubmit={handleSubmit} className={s.form}>
@@ -92,8 +103,6 @@ const CardForm = () => {
             {/* <h2 className={s.date}>{dateInfo}</h2> */}
             <div>
               <DatePicker
-                required
-                minLength="8"
                 autoComplete="off"
                 selected={datePick}
                 onChange={(date) => dispatch(datePickAction(date))}
@@ -102,6 +111,8 @@ const CardForm = () => {
                 timeIntervals={15}
                 timeCaption="time"
                 dateFormat="yyyy-MM-dd HH:mm"
+                minDate={new Date()}
+                filterTime={filterPassedTime}
                 customInput={<CustomInput />}
               />
             </div>
