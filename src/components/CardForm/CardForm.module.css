@@ -35,27 +35,6 @@
   align-items: baseline;
 }
 
-/* .level__select {
-  appearance: none;
-  background: url(/src/icons/select-arrow.svg) no-repeat 100% 50%;
-  display: flex;
-  align-items: baseline;
-  margin-left: 4px;
-  padding-right: 10px;
-  font-family: "HelveticaNeueCyr-Light";
-  font-size: 14px;
-  line-height: 14px;
-  letter-spacing: 0.02em;
-  color: #b9c3c8;
-  border: 0px;
-  outline: none;
-  left: 10px;
-}
-
-.level__select:hover {
-  cursor: pointer;
-} */
-
 .level {
   display: flex;
   align-items: baseline;
@@ -100,7 +79,6 @@
   fill: currentColor;
   background-color: #fff;
   text-align: center;
-  /* background-image: url(/src/icons/calendar.svg); */
 }
 
 .calendar__icon {
@@ -131,33 +109,6 @@
 
 .form__input:focus {
   outline: none;
-}
-
-.category__wrapper {
-  display: inherit;
-}
-
-.category__select {
-  appearance: none;
-  background: url(/src/icons/select-arrow.svg) no-repeat 90% 50% #d3f6ce;
-  font-family: "HelveticaNeueCyr-Light";
-  font-size: 11px;
-  line-height: 11px;
-  letter-spacing: 0.02em;
-  color: #282828;
-  border-radius: 0px 15px 15px 0px;
-  text-transform: uppercase;
-  margin-left: -21px;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 21px;
-  padding-right: 25px;
-  border: 0px;
-  outline: none;
-}
-
-.category__select:hover {
-  cursor: pointer;
 }
 
 .button__wrapper {
@@ -194,7 +145,7 @@
   justify-content: space-between;
 }
 
-/* -------------------select radio buttons-------------------- */
+/* -------------------DIFFICULTY SELECT START-------------------- */
 
 .level__select {
   display: flex;
@@ -208,18 +159,8 @@
   border: 0px;
 }
 
-/* .level__select::before {
-  content: url(/src/icons/ellipse-blue.svg);
-  display: block;
-  padding-right: 5px;
-} */
-/* 
-.level__arrow {
-  background: url(/src/icons/select-arrow.svg) no-repeat 100% 50%;
-} */
 .level__select::after {
   content: url(/src/icons/select-arrow.svg);
-  right: 1px;
   display: block;
   padding-left: 5px;
 }
@@ -324,10 +265,116 @@
   color: #000;
 }
 
-.option, .hidden {
-  display: none;
-}
-
 .ellipse {
   margin-right: 7px;
 }
+
+/* -------------------DIFFICULTY SELECT END-------------------- */
+
+/* -------------------CATEGORY SELECT START-------------------- */
+
+.category__wrapper {
+  display: inherit;
+}
+
+.category__button {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  outline: none;
+  border: none;
+  background-color: #fff;
+}
+
+.category__select {
+  font-family: "HelveticaNeueCyr-Light";
+  font-size: 11px;
+  line-height: 11px;
+  letter-spacing: 0.02em;
+  color: #282828;
+  background-color: #d3f6ce;
+  border-radius: 0px 15px 15px 0px;
+  text-transform: uppercase;
+  margin-left: -28px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 21px;
+  padding-right: 7px;
+  border: 0px;
+  outline: none;
+}
+
+.category__select::after {
+  content: url(/src/icons/select-arrow.svg);
+  padding-left: 5px;
+}
+
+.category__select:hover {
+  cursor: pointer;
+}
+
+.category__dropdown {
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  padding-left: 10px;
+  width: 80px;
+  height: 120px;
+  border-radius: 8%;
+  box-shadow: 0px 0px 10px 4px rgba(196, 196, 196, 0.4);
+  position: absolute;
+  text-transform: uppercase;
+  z-index: 1;
+  top: 100px;
+  left: 0;
+}
+
+.form__category {
+  display: flex;
+  align-items: baseline;
+  font-family: "HelveticaNeueCyr-Light";
+  font-size: 11px;
+  line-height: 20px;
+  letter-spacing: 0.02em;
+  color: #000;
+}
+
+.form__category:hover {
+  cursor: pointer;
+  color: #b9c3c8;
+}
+
+.work {
+  background: #d3f6ce;
+}
+
+.family {
+  background: #ffe6d3;
+}
+
+.health {
+  background: #cdf7ff;
+}
+
+.learning {
+  background: #fff6c0;
+}
+
+.leisure {
+  background: #f8d2ff;
+}
+
+.stuff {
+  background: #b9c3c8;
+}
+
+/* -------------------CATEGORY SELECT END-------------------- */
+
+/* -------------------UTILITY SELECT START-------------------- */
+
+.option,
+.hidden {
+  display: none;
+}
+
+/* -------------------UTILITY SELECT END-------------------- */
