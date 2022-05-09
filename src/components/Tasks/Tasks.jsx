@@ -37,8 +37,7 @@ const Tasks = ({ title, cardsData, children, todaysDate, dashed }) => {
           <></>
         )}
       </div>
-      {children}
-      <Card cardsData={cardsData} todaysDate={todaysDate} />
+      <Card cardsData={cardsData} todaysDate={todaysDate} children={children} />
     </div>
   );
 };

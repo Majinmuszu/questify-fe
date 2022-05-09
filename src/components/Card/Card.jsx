@@ -10,7 +10,7 @@ import fire from "../../icons/fire.svg";
 import { useUpdateCardStatusMutation } from "../../services/api";
 import { Animated } from "react-animated-css";
 
-const Card = ({ cardsData, todaysDate }) => {
+const Card = ({ cardsData, todaysDate, children }) => {
   const [isDoneStatus] = useUpdateCardStatusMutation();
   const [isAward, setIsAward] = useState(false);
   const [cardID, setCardID] = useState("");
@@ -30,6 +30,7 @@ const Card = ({ cardsData, todaysDate }) => {
   return (
     <>
       <ul className={s.CardList}>
+        {children}
         {cardsData.map(
           (
             {
