@@ -9,11 +9,8 @@ import ellipseBlue from "../../icons/ellipse-blue.svg";
 import fire from "../../icons/fire.svg";
 import { useUpdateCardStatusMutation } from "../../services/api";
 import { Animated } from "react-animated-css";
-import CardForm from "../CardForm/CardForm";
-import { useSelector } from "react-redux";
 
-const Card = ({ cardsData, todaysDate }) => {
-  const isFormVisible = useSelector((state) => state.isFormVisible);
+const Card = ({ cardsData, todaysDate, children }) => {
   const [isDoneStatus] = useUpdateCardStatusMutation();
   const [isAward, setIsAward] = useState(false);
   const [cardID, setCardID] = useState("");
@@ -33,7 +30,7 @@ const Card = ({ cardsData, todaysDate }) => {
   return (
     <>
       <ul className={s.CardList}>
-      {isFormVisible ? <CardForm /> : null}
+        {children}
         {cardsData.map(
           (
             {
