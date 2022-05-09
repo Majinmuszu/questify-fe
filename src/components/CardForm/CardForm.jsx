@@ -149,6 +149,7 @@ const CardForm = () => {
                   id="Normal"
                   name="difficulty"
                   value="normal"
+                  defaultChecked
                   onClick={handleDiffRadio}
                 />
                 <label className={s.form__hard} htmlFor="Hard">
@@ -238,6 +239,7 @@ const CardForm = () => {
                   id="Stuff"
                   name="category"
                   value="stuff"
+                  defaultChecked
                   onClick={handleCatRadio}
                 />
                 <label className={s.form__category} htmlFor="Family">
