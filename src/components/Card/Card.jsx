@@ -6,6 +6,7 @@ import arrowTaskIcon from "../../icons/arrowTask.svg";
 import ellipseRed from "../../icons/ellipse-red.svg";
 import ellipseGreen from "../../icons/ellipse-green.svg";
 import ellipseBlue from "../../icons/ellipse-blue.svg";
+import fire from "../../icons/fire.svg";
 import { useUpdateCardStatusMutation } from "../../services/api";
 import { Animated } from "react-animated-css";
 
@@ -30,16 +31,20 @@ const Card = ({ cardsData, todaysDate }) => {
     <>
       <ul className={s.CardList}>
         {cardsData.map(
-          ({
-            _id,
-            difficulty,
-            favorite,
-            title,
-            date,
-            category,
-            time,
-            type,
-          }) => (
+          (
+            {
+              _id,
+              difficulty,
+              favorite,
+              title,
+              date,
+              category,
+              time,
+              type,
+              isDone,
+            },
+            i
+          ) => (
             <li key={_id} className={s.CardItem}>
               {isAward && _id === cardID ? (
                 <div className={s.awardWrapper}>
@@ -97,11 +102,23 @@ const Card = ({ cardsData, todaysDate }) => {
                   </div>
                   <div className={s.TitleWrapper}>
                     <h2 className={s.CardTitle}>{title}</h2>
-                    <h4 className={s.CardDate}>
-                      {todaysDate
-                        ? todaysDate + ", " + time
-                        : date + ", " + time}
-                    </h4>
+                    <div className={s.TimeWrapper}>
+                      <h4 className={s.CardDate}>
+                        {todaysDate
+                          ? todaysDate + ", " + time
+                          : date + ", " + time}
+                      </h4>
+                      {i === 0 && !isDone ? (
+                        <img
+                          id={_id}
+                          className={s.fireIcon}
+                          src={fire}
+                          alt="star"
+                          tabIndex="1"></img>
+                      ) : (
+                        <></>
+                      )}
+                    </div>
                   </div>
                   <div className={s.CategoryWrapper}>
                     <p
