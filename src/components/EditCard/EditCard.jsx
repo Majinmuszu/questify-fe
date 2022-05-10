@@ -1,5 +1,5 @@
 import React, { forwardRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { datePickAction, formVisibilityAction } from "../../redux/actions";
 import { useAddCardMutation } from "../../services/api";
 import DatePicker from "react-datepicker";
@@ -10,6 +10,7 @@ import ellipseBlue from "../../icons/ellipse-blue.svg";
 import ellipseRed from "../../icons/ellipse-red.svg";
 import ellipseGreen from "../../icons/ellipse-green.svg";
 import { Animated } from "react-animated-css";
+import moment from "moment";
 
 import "react-datepicker/dist/react-datepicker.css";
 import s from "./EditCard.module.css";
@@ -29,8 +30,7 @@ const EditCard = ({
   const [category, setCategory] = useState(defaultCategory);
 
   const dispatch = useDispatch();
-
-  const datePick = useSelector((state) => state.datePick);
+  // const datePick = useSelector((state) => state.datePick);
 
   const [addNewCard] = useAddCardMutation();
 
@@ -194,7 +194,7 @@ const EditCard = ({
               <div>
                 <DatePicker
                   autoComplete="off"
-                  selected={datePick}
+                  selected={moment(defaultDate + " " + defaultTime)._d}
                   onChange={(date) => dispatch(datePickAction(date))}
                   showTimeSelect
                   timeFormat="HH:mm"
