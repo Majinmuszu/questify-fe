@@ -6,13 +6,16 @@ import arrowTaskIcon from "../../icons/arrowTask.svg";
 import ellipseRed from "../../icons/ellipse-red.svg";
 import ellipseGreen from "../../icons/ellipse-green.svg";
 import ellipseBlue from "../../icons/ellipse-blue.svg";
+import editIcon from "../../icons/edit.svg";
 import fire from "../../icons/fire.svg";
 import { useUpdateCardStatusMutation } from "../../services/api";
 import { Animated } from "react-animated-css";
+import EditCard from "../EditCard/EditCard";
 
 const Card = ({ cardsData, todaysDate, children }) => {
   const [isDoneStatus] = useUpdateCardStatusMutation();
   const [isAward, setIsAward] = useState(false);
+  const [isEdit, setIsEdit] = useState(false);
   const [cardID, setCardID] = useState("");
 
   const setDoneStatus = (e) => {
@@ -25,6 +28,13 @@ const Card = ({ cardsData, todaysDate, children }) => {
   const moveToDone = () => {
     let queryObject = { cardID, isDone: true };
     isDoneStatus(queryObject);
+  };
+
+  const handleEdit = (e) => {
+    e.preventDefault();
+    const currentId = e.target.id;
+    setCardID(currentId);
+    setIsEdit(true);
   };
 
   return (
@@ -46,7 +56,7 @@ const Card = ({ cardsData, todaysDate, children }) => {
             },
             i
           ) => (
-            <li key={_id} className={s.CardItem}>
+            <li key={_id} className={s.CardItem} id={_id}>
               {isAward && _id === cardID ? (
                 <div className={s.awardWrapper}>
                   <p className={s.awardTitle}>
@@ -78,6 +88,17 @@ const Card = ({ cardsData, todaysDate, children }) => {
                     />
                   </div>
                 </div>
+              ) : isEdit && _id === cardID ? (
+                <>
+                  <EditCard
+                    defaultID={_id}
+                    defaultTitle={title}
+                    defaultTime={time}
+                    defaultDate={date}
+                    defaultDifficulty={difficulty}
+                    defaultCategory={category}
+                  />
+                </>
               ) : (
                 <>
                   <div className={s.HeaderWrapper}>
@@ -109,7 +130,7 @@ const Card = ({ cardsData, todaysDate, children }) => {
                           ? todaysDate + ", " + time
                           : date + ", " + time}
                       </h4>
-                      {i === 0 && !isDone ? (
+                      {i === 0 && !isDone && todaysDate === "Today" ? (
                         <img
                           id={_id}
                           className={s.fireIcon}
@@ -140,6 +161,15 @@ const Card = ({ cardsData, todaysDate, children }) => {
                       }>
                       {category}
                     </p>
+                    <img
+                      onClick={handleEdit}
+                      id={_id}
+                      className={s.editIcon}
+                      src={editIcon}
+                      alt="edit"
+                      tabIndex="1"
+                      width="10px"
+                      height="10px"></img>
                   </div>
                 </>
               )}
