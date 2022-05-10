@@ -21,6 +21,10 @@
   border-radius: 10px;
 }
 
+/* .CardItem:hover {
+
+} */
+
 .HeaderWrapper {
   display: flex;
   justify-content: space-between;
@@ -91,6 +95,7 @@
 
 .CategoryWrapper {
   display: inherit;
+  justify-content: space-between;
 }
 
 .CardCategory {
@@ -191,6 +196,13 @@
   text-align: center;
   color: #b9c3c8;
   margin-right: 7px;
+  cursor: pointer;
+}
+
+.editIcon {
+  width: 15px;
+  height: 15px;
+  align-self: flex-end;
   cursor: pointer;
 }
 
