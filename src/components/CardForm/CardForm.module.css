@@ -118,14 +118,14 @@
   float: right;
 }
 
-.button__x {
+.button__cancel {
   color: #db0837;
   background-color: #fff;
   border: 0px;
   border-right: #b9c3c8 1px solid;
 }
 
-.button__x:hover {
+.button__cancel:hover {
   cursor: pointer;
 }
 
@@ -375,6 +375,13 @@
 .option,
 .hidden {
   display: none;
+}
+
+@media screen and (max-width: 530px) {
+  .form {
+    width: 290px;
+    height: 260px;
+  }
 }
 
 /* -------------------UTILITY SELECT END-------------------- */
