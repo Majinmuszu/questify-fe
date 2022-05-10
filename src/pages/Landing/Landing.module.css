@@ -90,7 +90,7 @@
   .landing {
     height: 100vh;
     background: url(/images/Landing/Desktop/landingD1.png) no-repeat 100% 0%,
-      url(/images/Landing/Desktop/landingD2.png) no-repeat 100% 100%;
+      url(/images/Landing/Desktop/landingD2.png) no-repeat 100% 110%;
   }
   .position {
     padding-top: 195px;
