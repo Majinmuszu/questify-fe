@@ -97,9 +97,10 @@ const Landing = () => {
               <input
                 type="text"
                 name="email"
+                required
                 className={s.input}
                 placeholder="Email"
-                defaultValue="zbyszek@mail.com"
+                // defaultValue="zbyszek@mail.com"
               ></input>
             </div>
             <div className={s.spacer__password}>
@@ -107,10 +108,11 @@ const Landing = () => {
               <input
                 type="password"
                 name="password"
+                required
                 className={s.input}
                 placeholder="Password"
                 minLength="6"
-                defaultValue="password2"
+                // defaultValue="password2"
               ></input>
               <ButtonGo />
             </div>
