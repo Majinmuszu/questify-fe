@@ -5,6 +5,7 @@ const currentUserAction = createAction("user/User");
 const formVisibilityAction = createAction("form/Form");
 const datePickAction = createAction("date/Date");
 const showDoneTasksAction = createAction("done/Done");
+const showIsEditTaskAction = createAction("edit/Edit");
 
 export {
   tokenAction,
@@ -12,4 +13,5 @@ export {
   formVisibilityAction,
   datePickAction,
   showDoneTasksAction,
+  showIsEditTaskAction,
 };

@@ -59,8 +59,7 @@ const CardForm = () => {
       ref={ref}
       value={value}
       type="button"
-      name="date"
-    >
+      name="date">
       {value.slice(0, 10) || "Date"}
       <img className={s.calendar__icon} alt="calendar" src={calendarIcon}></img>
     </button>
@@ -102,29 +101,25 @@ const CardForm = () => {
                 <button
                   className={s.level__button}
                   type="button"
-                  onClick={dropdownDiffHandler}
-                >
+                  onClick={dropdownDiffHandler}>
                   {difficulty === "Hard" ? (
                     <img
                       className={s.ellipse}
                       src={ellipseRed}
                       alt="star"
-                      tabIndex="1"
-                    ></img>
+                      tabIndex="1"></img>
                   ) : difficulty === "Normal" ? (
                     <img
                       className={s.ellipse}
                       src={ellipseGreen}
                       alt="star"
-                      tabIndex="1"
-                    ></img>
+                      tabIndex="1"></img>
                   ) : difficulty === "Easy" ? (
                     <img
                       className={s.ellipse}
                       src={ellipseBlue}
                       alt="star"
-                      tabIndex="1"
-                    ></img>
+                      tabIndex="1"></img>
                   ) : (
                     <></>
                   )}
@@ -173,8 +168,7 @@ const CardForm = () => {
               className={s.star__icon}
               src={starIcon}
               alt="star"
-              tabIndex="1"
-            ></img>
+              tabIndex="1"></img>
           </div>
           <div className={s.TitleWrapper}>
             <h2 className={s.form__title}>CREATE NEW QUEST</h2>
@@ -183,8 +177,7 @@ const CardForm = () => {
               name="title"
               required
               minLength="3"
-              type="text"
-            ></input>
+              type="text"></input>
             <div className={s.date__wrapper}>
               <div>
                 <DatePicker
@@ -209,8 +202,7 @@ const CardForm = () => {
                 <button
                   className={s.category__button}
                   type="button"
-                  onClick={dropdownCatHandler}
-                >
+                  onClick={dropdownCatHandler}>
                   <span
                     className={
                       category === "Stuff"
@@ -226,8 +218,7 @@ const CardForm = () => {
                         : category === "Leisure"
                         ? `${s.category__select} ${s.leisure}`
                         : s.category__select
-                    }
-                  >
+                    }>
                     {category}
                   </span>
                   <div className={s.level__arrow}></div>

@@ -11,11 +11,16 @@ import fire from "../../icons/fire.svg";
 import { useUpdateCardStatusMutation } from "../../services/api";
 import { Animated } from "react-animated-css";
 import EditCard from "../EditCard/EditCard";
+import { useDispatch, useSelector } from "react-redux";
+import { showIsEditTaskAction } from "../../redux/actions";
 
 const Card = ({ cardsData, todaysDate, children }) => {
+  const dispatch = useDispatch();
+
   const [isDoneStatus] = useUpdateCardStatusMutation();
+  const isEditStatus = useSelector((state) => state.isEdit);
   const [isAward, setIsAward] = useState(false);
-  const [isEdit, setIsEdit] = useState(false);
+  // const [isEdit, setIsEdit] = useState(false);
   const [cardID, setCardID] = useState("");
   const [isEditID, setIsEditID] = useState("");
 
@@ -24,7 +29,9 @@ const Card = ({ cardsData, todaysDate, children }) => {
     const currentId = e.target.id;
     setCardID(currentId);
     setIsAward(true);
-    setIsEdit(false);
+    dispatch(showIsEditTaskAction(false));
+
+    // setIsEdit(false);
   };
 
   const moveToDone = () => {
@@ -37,7 +44,9 @@ const Card = ({ cardsData, todaysDate, children }) => {
     const currentId = e.target.id;
     setIsEditID(currentId);
     setIsAward(false);
-    setIsEdit(true);
+    dispatch(showIsEditTaskAction(true));
+
+    // setIsEdit(true);
   };
 
   return (
@@ -91,7 +100,7 @@ const Card = ({ cardsData, todaysDate, children }) => {
                     />
                   </div>
                 </div>
-              ) : isEdit && _id === isEditID ? (
+              ) : isEditStatus && _id === isEditID ? (
                 <>
                   <EditCard
                     defaultID={_id}

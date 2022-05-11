@@ -1,7 +1,10 @@
 import React, { forwardRef, useState } from "react";
 import { useDispatch } from "react-redux";
-import { datePickAction, formVisibilityAction } from "../../redux/actions";
-import { useAddCardMutation } from "../../services/api";
+import { datePickAction, showIsEditTaskAction } from "../../redux/actions";
+import {
+  useDeleteCardMutation,
+  useUpdateCardMutation,
+} from "../../services/api";
 import DatePicker from "react-datepicker";
 import starIcon from "../../icons/star.svg";
 import calendarIcon from "../../icons/calendar.svg";
@@ -15,7 +18,6 @@ import { Animated } from "react-animated-css";
 import moment from "moment";
 import "react-datepicker/dist/react-datepicker.css";
 import s from "./EditCard.module.css";
-import { Notify } from "notiflix";
 
 const EditCard = ({
   defaultID,
@@ -32,25 +34,30 @@ const EditCard = ({
 
   const dispatch = useDispatch();
 
-  const [addNewCard] = useAddCardMutation();
+  const [addNewCard] = useUpdateCardMutation();
+  const [isDelete] = useDeleteCardMutation();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
+    const cardID = defaultID;
     const formDate = form.date.value;
     const date = formDate.slice(0, 10);
     const time = formDate.slice(11, 16);
     const difficulty = form.difficulty.value;
     const category = form.category.value;
     const title = form.title.value;
-    const type = "task";
-    if (!date) {
-      Notify.failure("Please choose date");
-    } else {
-      addNewCard({ title, difficulty, date, time, type, category });
-      dispatch(datePickAction(null));
-      dispatch(formVisibilityAction(false));
-    }
+
+    let queryObject = {
+      title,
+      difficulty,
+      date,
+      time,
+      category,
+    };
+    let pushData = { cardID, card: queryObject };
+    addNewCard(pushData);
+    dispatch(showIsEditTaskAction(false));
   };
 
   const CustomInput = forwardRef(({ value, onClick }, ref) => (
@@ -60,8 +67,7 @@ const EditCard = ({
       ref={ref}
       value={value}
       type="button"
-      name="date"
-    >
+      name="date">
       {value.slice(0, 10) || "Date"}
       <img className={s.calendar__icon} alt="calendar" src={calendarIcon}></img>
     </button>
@@ -93,19 +99,16 @@ const EditCard = ({
     setCatActive(false);
   };
 
-  // const handleTrash = (e) => {
-  //   e.preventDefault;
-  // };
+  const handleTrash = (e) => {
+    e.preventDefault();
+    isDelete(defaultID);
+  };
 
-  // const handleCancel = (e) => {
-  //   e.preventDefault();
-  //   dispatch(datePickAction(null));
-  //   dispatch(formVisibilityAction(false));
-  // };
-
-  // const handleDone = (e) => {
-  //   e.preventDefault;
-  // };
+  const handleCancel = (e) => {
+    e.preventDefault();
+    // dispatch(datePickAction(null));
+    dispatch(showIsEditTaskAction(false));
+  };
 
   return (
     <>
@@ -117,29 +120,25 @@ const EditCard = ({
                 <button
                   className={s.level__button}
                   type="button"
-                  onClick={dropdownDiffHandler}
-                >
+                  onClick={dropdownDiffHandler}>
                   {difficulty === "Hard" ? (
                     <img
                       className={s.ellipse}
                       src={ellipseRed}
                       alt="star"
-                      tabIndex="1"
-                    ></img>
+                      tabIndex="1"></img>
                   ) : difficulty === "Normal" ? (
                     <img
                       className={s.ellipse}
                       src={ellipseGreen}
                       alt="star"
-                      tabIndex="1"
-                    ></img>
+                      tabIndex="1"></img>
                   ) : difficulty === "Easy" ? (
                     <img
                       className={s.ellipse}
                       src={ellipseBlue}
                       alt="star"
-                      tabIndex="1"
-                    ></img>
+                      tabIndex="1"></img>
                   ) : (
                     <></>
                   )}
@@ -192,8 +191,7 @@ const EditCard = ({
               className={s.star__icon}
               src={starIcon}
               alt="star"
-              tabIndex="1"
-            ></img>
+              tabIndex="1"></img>
           </div>
           <div className={s.TitleWrapper}>
             <h2 className={s.form__title}>EDIT QUEST</h2>
@@ -203,8 +201,7 @@ const EditCard = ({
               required
               minLength="3"
               type="text"
-              defaultValue={defaultTitle}
-            ></input>
+              defaultValue={defaultTitle}></input>
             <div className={s.date__wrapper}>
               <div>
                 <DatePicker
@@ -229,8 +226,7 @@ const EditCard = ({
                 <button
                   className={s.category__button}
                   type="button"
-                  onClick={dropdownCatHandler}
-                >
+                  onClick={dropdownCatHandler}>
                   <span
                     className={
                       category === "Stuff"
@@ -246,8 +242,7 @@ const EditCard = ({
                         : category === "Leisure"
                         ? `${s.category__select} ${s.leisure}`
                         : s.category__select
-                    }
-                  >
+                    }>
                     {category}
                   </span>
                   <div className={s.level__arrow}></div>
@@ -333,13 +328,13 @@ const EditCard = ({
               </div>
             </div>
             <div className={s.button__wrapper}>
-              <button className={s.button__trash} onClick={handleSubmit}>
+              <button className={s.button__trash} onClick={handleTrash}>
                 <img alt="trash" src={trashIcon}></img>
               </button>
-              <button className={s.button__cancel} onClick={handleSubmit}>
+              <button className={s.button__cancel} onClick={handleCancel}>
                 <img alt="clear" src={clearIcon}></img>
               </button>
-              <button className={s.button__done} onClick={handleSubmit}>
+              <button type="submit" className={s.button__done}>
                 <img alt="done" src={doneIcon}></img>
               </button>
             </div>
