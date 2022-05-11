@@ -129,14 +129,22 @@
   cursor: pointer;
 }
 
-.button__create {
-  color: #00d7ff;
+.button__trash {
   background-color: #fff;
-  border: none;
-  padding-right: 0px;
+  border: 0px;
+  border-right: #b9c3c8 1px solid;
 }
 
-.button__create:hover {
+.button__trash:hover {
+  cursor: pointer;
+}
+
+.button__done {
+  background-color: #fff;
+  border: 0px;
+}
+
+.button__done:hover {
   cursor: pointer;
 }
 
@@ -295,7 +303,7 @@
   background-color: #d3f6ce;
   border-radius: 0px 15px 15px 0px;
   text-transform: uppercase;
-  margin-left: -28px;
+  margin-left: -27px;
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 21px;

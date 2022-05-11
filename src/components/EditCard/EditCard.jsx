@@ -9,9 +9,10 @@ import clearIcon from "../../icons/clear.svg";
 import ellipseBlue from "../../icons/ellipse-blue.svg";
 import ellipseRed from "../../icons/ellipse-red.svg";
 import ellipseGreen from "../../icons/ellipse-green.svg";
+import trashIcon from "../../icons/trash.svg";
+import doneIcon from "../../icons/done.svg";
 import { Animated } from "react-animated-css";
 import moment from "moment";
-
 import "react-datepicker/dist/react-datepicker.css";
 import s from "./EditCard.module.css";
 import { Notify } from "notiflix";
@@ -30,15 +31,8 @@ const EditCard = ({
   const [category, setCategory] = useState(defaultCategory);
 
   const dispatch = useDispatch();
-  // const datePick = useSelector((state) => state.datePick);
 
   const [addNewCard] = useAddCardMutation();
-
-  const handleCancel = (e) => {
-    e.preventDefault();
-    dispatch(datePickAction(null));
-    dispatch(formVisibilityAction(false));
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -66,7 +60,8 @@ const EditCard = ({
       ref={ref}
       value={value}
       type="button"
-      name="date">
+      name="date"
+    >
       {value.slice(0, 10) || "Date"}
       <img className={s.calendar__icon} alt="calendar" src={calendarIcon}></img>
     </button>
@@ -98,9 +93,23 @@ const EditCard = ({
     setCatActive(false);
   };
 
+  // const handleTrash = (e) => {
+  //   e.preventDefault;
+  // };
+
+  // const handleCancel = (e) => {
+  //   e.preventDefault();
+  //   dispatch(datePickAction(null));
+  //   dispatch(formVisibilityAction(false));
+  // };
+
+  // const handleDone = (e) => {
+  //   e.preventDefault;
+  // };
+
   return (
     <>
-      <Animated animationIn="bounceIn" animationOut="fadeOut" isVisible={true}>
+      <Animated animationIn="fadeIn" animationOut="fadeOut" isVisible={true}>
         <form onSubmit={handleSubmit} className={s.form}>
           <div className={s.header__wrapper}>
             <div className={s.level__wrapper}>
@@ -108,25 +117,29 @@ const EditCard = ({
                 <button
                   className={s.level__button}
                   type="button"
-                  onClick={dropdownDiffHandler}>
+                  onClick={dropdownDiffHandler}
+                >
                   {difficulty === "Hard" ? (
                     <img
                       className={s.ellipse}
                       src={ellipseRed}
                       alt="star"
-                      tabIndex="1"></img>
+                      tabIndex="1"
+                    ></img>
                   ) : difficulty === "Normal" ? (
                     <img
                       className={s.ellipse}
                       src={ellipseGreen}
                       alt="star"
-                      tabIndex="1"></img>
+                      tabIndex="1"
+                    ></img>
                   ) : difficulty === "Easy" ? (
                     <img
                       className={s.ellipse}
                       src={ellipseBlue}
                       alt="star"
-                      tabIndex="1"></img>
+                      tabIndex="1"
+                    ></img>
                   ) : (
                     <></>
                   )}
@@ -179,7 +192,8 @@ const EditCard = ({
               className={s.star__icon}
               src={starIcon}
               alt="star"
-              tabIndex="1"></img>
+              tabIndex="1"
+            ></img>
           </div>
           <div className={s.TitleWrapper}>
             <h2 className={s.form__title}>EDIT QUEST</h2>
@@ -189,7 +203,8 @@ const EditCard = ({
               required
               minLength="3"
               type="text"
-              defaultValue={defaultTitle}></input>
+              defaultValue={defaultTitle}
+            ></input>
             <div className={s.date__wrapper}>
               <div>
                 <DatePicker
@@ -214,7 +229,8 @@ const EditCard = ({
                 <button
                   className={s.category__button}
                   type="button"
-                  onClick={dropdownCatHandler}>
+                  onClick={dropdownCatHandler}
+                >
                   <span
                     className={
                       category === "Stuff"
@@ -230,7 +246,8 @@ const EditCard = ({
                         : category === "Leisure"
                         ? `${s.category__select} ${s.leisure}`
                         : s.category__select
-                    }>
+                    }
+                  >
                     {category}
                   </span>
                   <div className={s.level__arrow}></div>
@@ -316,11 +333,14 @@ const EditCard = ({
               </div>
             </div>
             <div className={s.button__wrapper}>
-              <button className={s.button__cancel} onClick={handleCancel}>
+              <button className={s.button__trash} onClick={handleSubmit}>
+                <img alt="trash" src={trashIcon}></img>
+              </button>
+              <button className={s.button__cancel} onClick={handleSubmit}>
                 <img alt="clear" src={clearIcon}></img>
               </button>
-              <button className={s.button__create} type="submit">
-                CREATE
+              <button className={s.button__done} onClick={handleSubmit}>
+                <img alt="done" src={doneIcon}></img>
               </button>
             </div>
           </div>
