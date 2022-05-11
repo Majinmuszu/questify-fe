@@ -17,12 +17,14 @@ const Card = ({ cardsData, todaysDate, children }) => {
   const [isAward, setIsAward] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
   const [cardID, setCardID] = useState("");
+  const [isEditID, setIsEditID] = useState("");
 
   const setDoneStatus = (e) => {
     e.preventDefault();
-    const cardID = e.target.id;
-    setCardID(cardID);
+    const currentId = e.target.id;
+    setCardID(currentId);
     setIsAward(true);
+    setIsEdit(false);
   };
 
   const moveToDone = () => {
@@ -33,7 +35,8 @@ const Card = ({ cardsData, todaysDate, children }) => {
   const handleEdit = (e) => {
     e.preventDefault();
     const currentId = e.target.id;
-    setCardID(currentId);
+    setIsEditID(currentId);
+    setIsAward(false);
     setIsEdit(true);
   };
 
@@ -88,7 +91,7 @@ const Card = ({ cardsData, todaysDate, children }) => {
                     />
                   </div>
                 </div>
-              ) : isEdit && _id === cardID ? (
+              ) : isEdit && _id === isEditID ? (
                 <>
                   <EditCard
                     defaultID={_id}
