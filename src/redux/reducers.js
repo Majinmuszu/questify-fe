@@ -5,8 +5,8 @@ import {
   formVisibilityAction,
   datePickAction,
   showDoneTasksAction,
+  showIsEditTaskAction,
 } from "./actions";
-
 
 const tokenReducer = createReducer(null, {
   [tokenAction]: (state, { payload }) => payload,
@@ -23,6 +23,9 @@ const datePickReducer = createReducer(null, {
 const showDoneReducer = createReducer(false, {
   [showDoneTasksAction]: (state, { payload }) => payload,
 });
+const showEditTaskReducer = createReducer(false, {
+  [showIsEditTaskAction]: (state, { payload }) => payload,
+});
 
 export {
   tokenReducer,
@@ -30,4 +33,5 @@ export {
   formReducer,
   datePickReducer,
   showDoneReducer,
+  showEditTaskReducer,
 };

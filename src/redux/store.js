@@ -6,6 +6,7 @@ import {
   showDoneReducer,
   tokenReducer,
   userReducer,
+  showEditTaskReducer,
 } from "./reducers";
 
 // const preloadedState = {
@@ -20,6 +21,7 @@ export const store = configureStore({
     isFormVisible: formReducer,
     datePick: datePickReducer,
     isDoneVisible: showDoneReducer,
+    isEdit: showEditTaskReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({ serializableCheck: false }).concat(

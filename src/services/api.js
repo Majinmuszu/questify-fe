@@ -71,7 +71,7 @@ const questifyApi = createApi({
     // cardID is everytime STRING type
 
     updateCard: builder.mutation({
-      query: (cardID, card) => ({
+      query: ({ cardID, card }) => ({
         //example card = {
         //  title: "example title",
         //  difficulty: "easy"/"normal"/"hard",
